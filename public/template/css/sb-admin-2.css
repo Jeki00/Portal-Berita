@@ -84,6 +84,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
 }
 
+
 p {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -397,6 +398,30 @@ h6, .h6 {
 
 .head {
   font-weight: 500;
+}
+
+.head-navbar {
+  padding: 1em;
+  margin-left: 5rem;
+}
+.head-navbar2 {
+  padding: 1em;
+  margin-left: 0.05rem;
+}
+.head-navbar3{
+  padding: 1em;
+  margin-top: 1rem;
+}
+.head-navbar4{
+  margin-left: 5rem;
+}
+.head-navbar5{
+  margin-top: 0.5rem;
+  margin-left: 10rem;
+  display: flex;
+}
+.head-navbar6{
+  margin-left: 1rem;
 }
 
 .subhead {
@@ -1848,6 +1873,21 @@ pre code {
   border-radius: 0.35rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.form-control-header {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #6e707e;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.35rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .form-control {
@@ -2288,7 +2328,7 @@ textarea.form-control {
   .form-inline .form-control-plaintext {
     display: inline-block;
   }
-  .form-inline .input-group,
+  .form-inline .input-group-header,
   .form-inline .custom-select {
     width: auto;
   }
@@ -2316,6 +2356,25 @@ textarea.form-control {
 }
 
 .btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #858796;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.35rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-header {
   display: inline-block;
   font-weight: 400;
   color: #858796;
@@ -2370,6 +2429,11 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
+  color: #fff;
+  background-color: #2e59d9;
+  border-color: #2e59d9;
+}
+.btn-primary-header {
   color: #fff;
   background-color: #2e59d9;
   border-color: #2e59d9;
@@ -3286,7 +3350,7 @@ input[type="button"].btn-block {
   justify-content: flex-start;
 }
 
-.btn-toolbar .input-group {
+.btn-toolbar .input-group-header {
   width: auto;
 }
 
@@ -3374,18 +3438,20 @@ input[type="button"].btn-block {
   pointer-events: none;
 }
 
-.input-group {
+.input-group-header {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  width: 100%;
+  width: 20%;
 }
 
-.input-group > .form-control,
-.input-group > .form-control-plaintext,
-.input-group > .custom-select,
-.input-group > .custom-file {
+
+
+.input-group-header > .form-control,
+.input-group-header > .form-control-plaintext,
+.input-group-header > .custom-select,
+.input-group-header > .custom-file {
   position: relative;
   flex: 1 1 auto;
   width: 1%;
@@ -3393,98 +3459,98 @@ input[type="button"].btn-block {
   margin-bottom: 0;
 }
 
-.input-group > .form-control + .form-control,
-.input-group > .form-control + .custom-select,
-.input-group > .form-control + .custom-file,
-.input-group > .form-control-plaintext + .form-control,
-.input-group > .form-control-plaintext + .custom-select,
-.input-group > .form-control-plaintext + .custom-file,
-.input-group > .custom-select + .form-control,
-.input-group > .custom-select + .custom-select,
-.input-group > .custom-select + .custom-file,
-.input-group > .custom-file + .form-control,
-.input-group > .custom-file + .custom-select,
-.input-group > .custom-file + .custom-file {
+.input-group-header > .form-control + .form-control,
+.input-group-header > .form-control + .custom-select,
+.input-group-header > .form-control + .custom-file,
+.input-group-header > .form-control-plaintext + .form-control,
+.input-group-header > .form-control-plaintext + .custom-select,
+.input-group-header > .form-control-plaintext + .custom-file,
+.input-group-header > .custom-select + .form-control,
+.input-group-header > .custom-select + .custom-select,
+.input-group-header > .custom-select + .custom-file,
+.input-group-header > .custom-file + .form-control,
+.input-group-header > .custom-file + .custom-select,
+.input-group-header > .custom-file + .custom-file {
   margin-left: -1px;
 }
 
-.input-group > .form-control:focus,
-.input-group > .custom-select:focus,
-.input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
+.input-group-header > .form-control:focus,
+.input-group-header > .custom-select:focus,
+.input-group-header > .custom-file .custom-file-input:focus ~ .custom-file-label {
   z-index: 3;
 }
 
-.input-group > .custom-file .custom-file-input:focus {
+.input-group-header > .custom-file .custom-file-input:focus {
   z-index: 4;
 }
 
-.input-group > .form-control:not(:first-child),
-.input-group > .custom-select:not(:first-child) {
+.input-group-header > .form-control:not(:first-child),
+.input-group-header > .custom-select:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.input-group > .custom-file {
+.input-group-header > .custom-file {
   display: flex;
   align-items: center;
 }
 
-.input-group > .custom-file:not(:last-child) .custom-file-label,
-.input-group > .custom-file:not(:first-child) .custom-file-label {
+.input-group-header > .custom-file:not(:last-child) .custom-file-label,
+.input-group-header > .custom-file:not(:first-child) .custom-file-label {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.input-group:not(.has-validation) > .form-control:not(:last-child),
-.input-group:not(.has-validation) > .custom-select:not(:last-child),
-.input-group:not(.has-validation) > .custom-file:not(:last-child) .custom-file-label::after {
+.input-group-header:not(.has-validation) > .form-control:not(:last-child),
+.input-group-header:not(.has-validation) > .custom-select:not(:last-child),
+.input-group-header:not(.has-validation) > .custom-file:not(:last-child) .custom-file-label::after {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.input-group.has-validation > .form-control:nth-last-child(n + 3),
-.input-group.has-validation > .custom-select:nth-last-child(n + 3),
-.input-group.has-validation > .custom-file:nth-last-child(n + 3) .custom-file-label::after {
+.input-group-header.has-validation > .form-control:nth-last-child(n + 3),
+.input-group-header.has-validation > .custom-select:nth-last-child(n + 3),
+.input-group-header.has-validation > .custom-file:nth-last-child(n + 3) .custom-file-label::after {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.input-group-prepend,
-.input-group-append {
+.input-group-header-prepend,
+.input-group-header-append {
   display: flex;
 }
 
-.input-group-prepend .btn,
-.input-group-append .btn {
+.input-group-header-prepend .btn,
+.input-group-header-append .btn {
   position: relative;
   z-index: 2;
 }
 
-.input-group-prepend .btn:focus,
-.input-group-append .btn:focus {
+.input-group-header-prepend .btn:focus,
+.input-group-header-append .btn:focus {
   z-index: 3;
 }
 
-.input-group-prepend .btn + .btn,
-.input-group-prepend .btn + .input-group-text,
-.input-group-prepend .input-group-text + .input-group-text,
-.input-group-prepend .input-group-text + .btn,
-.input-group-append .btn + .btn,
-.input-group-append .btn + .input-group-text,
-.input-group-append .input-group-text + .input-group-text,
-.input-group-append .input-group-text + .btn {
+.input-group-header-prepend .btn + .btn,
+.input-group-header-prepend .btn + .input-group-header-text,
+.input-group-header-prepend .input-group-header-text + .input-group-header-text,
+.input-group-header-prepend .input-group-header-text + .btn,
+.input-group-header-append .btn + .btn,
+.input-group-header-append .btn + .input-group-header-text,
+.input-group-header-append .input-group-header-text + .input-group-header-text,
+.input-group-header-append .input-group-header-text + .btn {
   margin-left: -1px;
 }
 
-.input-group-prepend {
+.input-group-header-prepend {
   margin-right: -1px;
 }
 
-.input-group-append {
+.input-group-header-append {
   margin-left: -1px;
 }
 
-.input-group-text {
+.input-group-header-text {
   display: flex;
   align-items: center;
   padding: 0.375rem 0.75rem;
@@ -3500,68 +3566,68 @@ input[type="button"].btn-block {
   border-radius: 0.35rem;
 }
 
-.input-group-text input[type="radio"],
-.input-group-text input[type="checkbox"] {
+.input-group-header-text input[type="radio"],
+.input-group-header-text input[type="checkbox"] {
   margin-top: 0;
 }
 
-.input-group-lg > .form-control:not(textarea),
-.input-group-lg > .custom-select {
+.input-group-header-lg > .form-control:not(textarea),
+.input-group-header-lg > .custom-select {
   height: calc(1.5em + 1rem + 2px);
 }
 
-.input-group-lg > .form-control,
-.input-group-lg > .custom-select,
-.input-group-lg > .input-group-prepend > .input-group-text,
-.input-group-lg > .input-group-append > .input-group-text,
-.input-group-lg > .input-group-prepend > .btn,
-.input-group-lg > .input-group-append > .btn {
+.input-group-header-lg > .form-control,
+.input-group-header-lg > .custom-select,
+.input-group-header-lg > .input-group-header-prepend > .input-group-header-text,
+.input-group-header-lg > .input-group-header-append > .input-group-header-text,
+.input-group-header-lg > .input-group-header-prepend > .btn,
+.input-group-header-lg > .input-group-header-append > .btn {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
 
-.input-group-sm > .form-control:not(textarea),
-.input-group-sm > .custom-select {
+.input-group-header-sm > .form-control:not(textarea),
+.input-group-header-sm > .custom-select {
   height: calc(1.5em + 0.5rem + 2px);
 }
 
-.input-group-sm > .form-control,
-.input-group-sm > .custom-select,
-.input-group-sm > .input-group-prepend > .input-group-text,
-.input-group-sm > .input-group-append > .input-group-text,
-.input-group-sm > .input-group-prepend > .btn,
-.input-group-sm > .input-group-append > .btn {
+.input-group-header-sm > .form-control,
+.input-group-header-sm > .custom-select,
+.input-group-header-sm > .input-group-header-prepend > .input-group-header-text,
+.input-group-header-sm > .input-group-header-append > .input-group-header-text,
+.input-group-header-sm > .input-group-header-prepend > .btn,
+.input-group-header-sm > .input-group-header-append > .btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.2rem;
 }
 
-.input-group-lg > .custom-select,
-.input-group-sm > .custom-select {
+.input-group-header-lg > .custom-select,
+.input-group-header-sm > .custom-select {
   padding-right: 1.75rem;
 }
 
-.input-group > .input-group-prepend > .btn,
-.input-group > .input-group-prepend > .input-group-text,
-.input-group:not(.has-validation) > .input-group-append:not(:last-child) > .btn,
-.input-group:not(.has-validation) > .input-group-append:not(:last-child) > .input-group-text,
-.input-group.has-validation > .input-group-append:nth-last-child(n + 3) > .btn,
-.input-group.has-validation > .input-group-append:nth-last-child(n + 3) > .input-group-text,
-.input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
-.input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
+.input-group-header > .input-group-header-prepend > .btn,
+.input-group-header > .input-group-header-prepend > .input-group-header-text,
+.input-group-header:not(.has-validation) > .input-group-header-append:not(:last-child) > .btn,
+.input-group-header:not(.has-validation) > .input-group-header-append:not(:last-child) > .input-group-header-text,
+.input-group-header.has-validation > .input-group-header-append:nth-last-child(n + 3) > .btn,
+.input-group-header.has-validation > .input-group-header-append:nth-last-child(n + 3) > .input-group-header-text,
+.input-group-header > .input-group-header-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group-header > .input-group-header-append:last-child > .input-group-header-text:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.input-group > .input-group-append > .btn,
-.input-group > .input-group-append > .input-group-text,
-.input-group > .input-group-prepend:not(:first-child) > .btn,
-.input-group > .input-group-prepend:not(:first-child) > .input-group-text,
-.input-group > .input-group-prepend:first-child > .btn:not(:first-child),
-.input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
+.input-group-header > .input-group-header-append > .btn,
+.input-group-header > .input-group-header-append > .input-group-header-text,
+.input-group-header > .input-group-header-prepend:not(:first-child) > .btn,
+.input-group-header > .input-group-header-prepend:not(:first-child) > .input-group-header-text,
+.input-group-header > .input-group-header-prepend:first-child > .btn:not(:first-child),
+.input-group-header > .input-group-header-prepend:first-child > .input-group-header-text:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -4129,6 +4195,12 @@ input[type="button"].btn-block {
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
+.navbar-header {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem 1rem;
+}
 
 .navbar .container,
 .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl {
@@ -4157,7 +4229,10 @@ input[type="button"].btn-block {
   flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
+  margin-left: 2rem;
   list-style: none;
+  background-color: #2e59d9;
+  height: 3 rem;
 }
 
 .navbar-nav .nav-link {
@@ -4514,6 +4589,7 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border: 1px solid #e3e6f0;
   border-radius: 0.35rem;
+  height: 350px;
 }
 
 .card-login {
@@ -6521,7 +6597,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #5a5c69 !important;
+  background-color: #000000 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -9547,6 +9623,11 @@ button.bg-dark:focus {
 
 .text-right {
   text-align: right !important;
+  margin-right: 20rem;
+}
+.text-right2 {
+  text-align: right !important;
+  margin-right: 1rem;
 }
 
 .text-center {
@@ -10222,7 +10303,7 @@ a:focus {
 }
 
 .topbar {
-  height: 4.375rem;
+  height: 10rem;
 }
 
 .topbar #sidebarToggleTop {

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Sistem Inventori</title>
+        <title>UNS News</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="landing-page/assets/favicon.ico" /> 
         <!-- Font Awesome icons (free version)-->
@@ -28,7 +28,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#page-top">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/home">Beranda</a></li>
                         <li class="nav-item"><a class="nav-link" href="/login">Masuk</a></li>
                         <li class="nav-item"><a class="nav-link" href="/register">Daftar</a></li>
                     </ul>
