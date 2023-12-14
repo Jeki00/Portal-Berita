@@ -21,3 +21,6 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/pencarian', [App\Http\Controllers\Controller::class, 'pencarian'])->name('pencarian');
+Route::get('/detail', [App\Http\Controllers\Controller::class, 'detail'])->name('detail');
+Route::get('/profil', [App\Http\Controllers\Controller::class, 'profil'])->name('profil');

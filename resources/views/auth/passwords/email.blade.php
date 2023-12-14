@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Login</title>
+    <title>Kirim Email</title>
     <!-- Custom fonts for this template-->
     <link href="template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
