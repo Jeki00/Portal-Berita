@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/pencarian', [App\Http\Controllers\Controller::class, 'pencarian'])->name('pencarian');
 Route::get('/detail', [App\Http\Controllers\Controller::class, 'detail'])->name('detail');
 Route::get('/profil', [App\Http\Controllers\Controller::class, 'profil'])->name('profil');
+
+Route::resource('berita', BeritaController::class);
+Route::resource('draft', DraftController::class);
+Route::resource('iklan', IklanController::class);
