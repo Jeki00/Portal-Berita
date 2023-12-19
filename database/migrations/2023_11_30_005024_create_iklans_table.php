@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('tanggal_keluar')->nullable();
             $table->timestamp('tanggal_hilang')->nullable();
             $table->string('perusahaan');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }
