@@ -28,11 +28,11 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
+        'id_role',
         'name',
         'email',
         'password',
         'no_hp',
-        'id_role',
         'no_rekening'
     ];
 
@@ -55,6 +55,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function customCreate($id_role, $name, $password, $email, $no_hp, $no_rekening)
+    {
+        return User::create([
+            'id_role' => $id_role,
+            'name' => $name,
+            'password' => $password,
+            'email' => $email,
+            'no_hp' => $no_hp,
+            'no_rekening' => $no_rekening,
+        ]);
+    }
 
     public function komentars(): HasMany
     {

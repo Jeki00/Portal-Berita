@@ -119,6 +119,7 @@
                                 </div> --}}
                             </div>
                             <!-- From -->
+                            @auth
                             <div class="row">
                                 <div class="col-lg-8">
                                     <h3 class="mr-20">Komentar :</h3><br>
@@ -137,6 +138,7 @@
                                     </form>
                                 </div>
                             </div>
+                            @endauth
                         </div>
                         <div class="col-lg-4">
                             <!-- Section Tittle -->

@@ -19,4 +19,11 @@ class Role extends Model
     {
         return $this->hasMany(User::class, 'id_role');
     }
+
+    public static function customCreate($role)
+    {
+        return Role::create([
+            'role' => $role,
+        ]);
+    }
 }

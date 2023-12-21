@@ -18,7 +18,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include ('layouts.navbar')
+                @include ('layouts.navbar-menu')
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -30,23 +30,22 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
+                        <br>
+                        <br>
                         <div class="table-responsive">
                             <table class="table" id="dataTable" width="100%" cellspacing="0">
                                 <tbody class="text-left">
                                     <tr>
                                         <td>Nama</td>
-                                        <td>Alfiansyah</td>
-                                        {{-- <td>{{ Auth::user()->name }}</td> --}}
+                                        <td>{{ Auth::user()->name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Email</td>
-                                        <td>Alfiansyah@mail.com</td>
-                                        {{-- <td>{{ Auth::user()->email }}</td> --}}
+                                        <td>{{ Auth::user()->email }}</td>
                                     </tr>
                                     <tr>
                                         <td>No. HP</td>
-                                        <td>089674661158</td>
-                                        {{-- <td>{{ Auth::user()->no_hp }}  --}}
+                                        <td>{{ Auth::user()->no_hp }} 
                                             <a href="/edit-akun" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
                                             <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td>
                                     </tr>
@@ -63,7 +62,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            @include ('layouts.footer')
+            @include ('layouts.footer-menu')
             <!-- End of Footer -->
 
         </div>

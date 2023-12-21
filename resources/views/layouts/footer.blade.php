@@ -9,32 +9,32 @@
                     
                 </div>
                 <div class="text-right2 ">
-                    <a class="text-white " href="/login">                       
+                    <a class="text-white " href="/home">                       
                         Politik 
                     </a>
                     <br>
-                    <a class="text-white " href="/login">                       
+                    <a class="text-white " href="/home">                       
                         Dunia 
                     </a>
                     <br>
-                    <a class="text-white " href="/login">                       
+                    <a class="text-white " href="/home">                       
                         Ekonomi 
                     </a>
                     <br>
-                    <a class="text-white " href="/login">                       
+                    <a class="text-white " href="/home">                       
                         Sains & Teknologi 
                     </a>
                 </div>
                 <div class="text-right ">
-                    <a class="text-white " href="/login">                       
+                    <a class="text-white " href="/home">                       
                         Bisnis 
                     </a>
                     <br>
-                    <a class="text-white " href="/login">                       
+                    <a class="text-white " href="/home">                       
                         Travel 
                     </a>
                     <br>
-                    <a class="text-white " href="/login">                       
+                    <a class="text-white " href="/home">                       
                         Iklim 
                     </a>
                 </div>

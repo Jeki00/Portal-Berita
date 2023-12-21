@@ -7,29 +7,15 @@
                         <h2 class="text-white">UNS News</h2>
                     </div>
 
-                    @guest
-                    <div>
-                        <a href="/login">                       
-                            <button class="btn-header btn-primary-header" >
-                            Masuk 
-                            </button>
-                        </a>
-                    
-                    </div> 
-                    @endguest
-                    
-                        
+
                     <ul class="navbar-nav navbar">
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            @auth
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-solid fa-bars mr-2"></i>
                                 <span class="mr-2 d-none d-lg-inline text-white  ">Menu</span>
                             </a>
-                            @endauth
-
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -122,70 +108,121 @@
 
                         <div class="head-navbar2">
                             <a class="text-white " href="/home">                       
-                                Politik 
+                                Beranda 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
-                                Dunia 
+                            <a class="text-white ">                       
+                                 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
-                                Ekonomi 
+                            <a class="text-white ">                       
+                                 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
-                                Sains & Teknologi 
+                            <a class="text-white ">                       
+                                 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
-                                Bisnis 
+                            <a class="text-white ">                       
+                                 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
-                                Travel 
+                            <a class="text-white ">                       
+                                 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
-                                Iklim 
+                            <a class="text-white ">                       
+                                 
                             </a>
                         </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        <div class="head-navbar2">
+                            <a class="text-white ">                       
+                                 
+                            </a>
+                        </div>
+                        
                      
                     </ul>
-                    <div class="input-group-header mb- head-navbar2">
-                        <input type="text" class="form-control" placeholder="Masukkan Kata Kunci">
-                        <div class="input-group-header-append">
-                          <a href="/pencarian"><button class="btn-header btn-primary-header" type="submit">Cari</button>  </a>
-                         </div>
-                      </div>
-
-                      @auth
-                      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title font-weight-bold text-primary" id="exampleModalLabel" >Keluar?</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">Apakah Anda yakin ingin keluar?</div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-                                        <a class="btn btn-primary" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">Keluar</a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </div>
+                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title font-weight-bold text-primary" id="exampleModalLabel" >Keluar?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
                             </div>
-                      </div>
-                      @endauth
+                            <div class="modal-body">Apakah Anda yakin ingin keluar?</div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+                                <a class="btn btn-primary" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Keluar</a>
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </nav>

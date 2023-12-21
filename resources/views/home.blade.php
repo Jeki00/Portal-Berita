@@ -56,7 +56,7 @@
                                 <img src="{{asset('template/img/trending/trending_top.jpg')}}" alt="">
                                 <div class="trend-top-cap">
                                     <span>Appetizers</span>
-                                    <h2><a href="">Welcome To The Best Model Winner<br> Contest At Look of the year</a></h2>
+                                    <h2><a href="/detail">Welcome To The Best Model Winner<br> Contest At Look of the year</a></h2>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="trend-bottom-cap">
                                         <span class="color1">Lifestyple</span>
-                                        <h4><a href="">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4>
+                                        <h4><a href="/detail">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4>
                                     </div>
                                 </div>
                                 </div>
@@ -81,7 +81,7 @@
                                         </div>
                                         <div class="trend-bottom-cap">
                                             <span class="color2">Sports</span>
-                                            <h4><h4><a href="">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4></h4>
+                                            <h4><h4><a href="/detail">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                         </div>
                                         <div class="trend-bottom-cap">
                                             <span class="color3">Travels</span>
-                                            <h4><a href=""> Welcome To The Best Model Winner Contest</a></h4>
+                                            <h4><a href="/detail"> Welcome To The Best Model Winner Contest</a></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">Concert</span>
-                                <h4><a href="">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -116,7 +116,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color3">sea beach</span>
-                                <h4><a href="">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -125,7 +125,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color2">Bike Show</span>
-                                <h4><a href="">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
                             </div>
                         </div> 
                         <div class="trand-right-single d-flex">
@@ -134,7 +134,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color4">See beach</span>
-                                <h4><a href="">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -143,7 +143,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">Skeping</span>
-                                <h4><a href="">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
                             </div>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1">Strike</span>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div> 
                             <div class="weekly-single active">
@@ -182,7 +182,7 @@
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1">Strike</span>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div>
                             <div class="weekly-single">
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1">Strike</span>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div>
                             <div class="weekly-single">
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1">Strike</span>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div>
                         </div>
@@ -253,7 +253,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -264,7 +264,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div> 
@@ -275,7 +275,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -286,7 +286,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -304,7 +304,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -315,7 +315,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div> 
@@ -326,7 +326,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -337,7 +337,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -355,7 +355,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -366,7 +366,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div> 
@@ -377,7 +377,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -388,7 +388,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -406,7 +406,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -417,7 +417,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div> 
@@ -428,7 +428,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -439,7 +439,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -457,7 +457,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -468,7 +468,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div> 
@@ -479,7 +479,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -490,7 +490,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -508,7 +508,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -519,7 +519,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div> 
@@ -530,7 +530,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -541,7 +541,7 @@
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">Night party</span>
-                                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -563,7 +563,7 @@
                     <div class="single-box">
                         <div class="follow-us d-flex align-items-center">
                             <div class="follow-social">
-                                <a href="#"><img src="{{asset('template/img/news/icon-fb.png')}}" alt=""></a>
+                                <a href="/detail"><img src="{{asset('template/img/news/icon-fb.png')}}" alt=""></a>
                             </div>
                             <div class="follow-count">  
                                 <span>8,045</span>
@@ -572,7 +572,7 @@
                         </div> 
                         <div class="follow-us d-flex align-items-center">
                             <div class="follow-social">
-                                <a href="#"><img src="{{asset('template/img/news/icon-tw.png')}}" alt=""></a>
+                                <a href="/detail"><img src="{{asset('template/img/news/icon-tw.png')}}" alt=""></a>
                             </div>
                             <div class="follow-count">
                                 <span>8,045</span>
@@ -581,7 +581,7 @@
                         </div>
                             <div class="follow-us d-flex align-items-center">
                             <div class="follow-social">
-                                <a href="#"><img src="{{asset('template/img/news/icon-ins.png')}}" alt=""></a>
+                                <a href="/detail"><img src="{{asset('template/img/news/icon-ins.png')}}" alt=""></a>
                             </div>
                             <div class="follow-count">
                                 <span>8,045</span>
@@ -590,7 +590,7 @@
                         </div>
                         <div class="follow-us d-flex align-items-center">
                             <div class="follow-social">
-                                <a href="#"><img src="{{asset('template/img/news/icon-yo.png')}}" alt=""></a>
+                                <a href="/detail"><img src="{{asset('template/img/news/icon-yo.png')}}" alt=""></a>
                             </div>
                             <div class="follow-count">
                                 <span>8,045</span>
@@ -630,7 +630,7 @@
                                 <div class="weekly2-caption">
                                     <span class="color1">Corporate</span>
                                     <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div> 
                             <div class="weekly2-single">
@@ -640,7 +640,7 @@
                                 <div class="weekly2-caption">
                                     <span class="color1">Event night</span>
                                     <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div> 
                             <div class="weekly2-single">
@@ -650,7 +650,7 @@
                                 <div class="weekly2-caption">
                                     <span class="color1">Corporate</span>
                                     <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div>
                              <div class="weekly2-single">
@@ -660,7 +660,7 @@
                                 <div class="weekly2-caption">
                                     <span class="color1">Event time</span>
                                     <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div> 
                              <div class="weekly2-single">
@@ -670,7 +670,7 @@
                                 <div class="weekly2-caption">
                                     <span class="color1">Corporate</span>
                                     <p>25 Jan 2020</p>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div> 
                         </div>
@@ -702,7 +702,7 @@
                                 </div>
                                 <div class="what-cap">
                                     <span class="color1">Night party</span>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div>
                             <div class="single-recent mb-100">
@@ -711,7 +711,7 @@
                                 </div>
                                 <div class="what-cap">
                                     <span class="color1">Night party</span>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div>
                             <div class="single-recent mb-100">
@@ -720,7 +720,7 @@
                                 </div>
                                 <div class="what-cap">
                                     <span class="color1">Night party</span>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div>
                             <div class="single-recent mb-100">
@@ -729,7 +729,7 @@
                                 </div>
                                 <div class="what-cap">
                                     <span class="color1">Night party</span>
-                                    <h4><a href="#">Welcome To The Best Model  Winner Contest</a></h4>
+                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
                             </div>
                         </div>
