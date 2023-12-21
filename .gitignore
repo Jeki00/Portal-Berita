@@ -17,3 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+resources/views/beranda.blade.php
+resources/views/layouts/page.blade.php

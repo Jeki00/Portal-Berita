@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\DraftController;
+use App\Http\Controllers\IklanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,10 @@ Route::get('/detail', [App\Http\Controllers\Controller::class, 'detail'])->name(
 
 # User
 Route::get('/profil', [App\Http\Controllers\Controller::class, 'profil'])->name('profil');
+
+Route::resource('berita', BeritaController::class);
+Route::resource('draft', DraftController::class);
+Route::resource('iklan', IklanController::class);
 Route::get('/edit-akun', [App\Http\Controllers\Controller::class, 'editAkun'])->name('editAkun');
 Route::get('/buat-postingan', [App\Http\Controllers\Controller::class, 'buatPostingan'])->name('buatPostingan');
 Route::get('/draft', [App\Http\Controllers\Controller::class, 'draft'])->name('draft');
