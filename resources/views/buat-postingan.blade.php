@@ -23,13 +23,12 @@
                             <div class="text-center">
                                 <h1 class="h4 subhead text-blue-100 mb-3" >Buat Postingan</h1>
                             </div>
-                            <form class="user" action='/edit-akun' method='POST'>
+                            <form class="user" action='/draft' method='POST' enctype="multipart/form-data">
                                 @csrf
                                     <div class="form-group">
                                         <h6 class="h6 text-blue-100 mb-1">Thumbnail</h6>
-                                        <input class="form-control form-control-lg" id="thumbnail" type="file">
+                                        <input class="form-control form-control-lg"  id="thumbnail"  name="thumbnail" type="file">
                                     </div>
-                                   
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Judul Berita</h6>
                                     <input type="text" class="form-control form-control-user" id="judul" name="judul" placeholder="Masukkan Judul" required>

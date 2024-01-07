@@ -23,7 +23,7 @@
                             <div class="text-center">
                                 <h1 class="h4 subhead text-blue-100 mb-3" >Tambah Pengeluaran</h1>
                             </div>
-                            <form class="user" action='/edit-akun' method='POST'>
+                            <form class="user" action='/tambah-pengeluaran' method='POST'>
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1" class="font-weight-bold text-primary mt-4">Tanggal</label>

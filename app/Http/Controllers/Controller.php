@@ -6,6 +6,15 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
+use App\Models;
+use App\Models\UangMasuk;
+use App\Models\UangKeluar;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use App\Exports\LaporanExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
@@ -125,6 +134,35 @@ class Controller extends BaseController
     }
     public function laporan()
     {
-        return view('laporan');
+        $hasil = $results = DB::table('uang_masuks')
+        ->select('*')
+        ->union(DB::table('uang_keluars')->select('*'))
+        ->orderBy('tanggal')
+        ->get();
+
+        // $hasil = json_decode($hasil);
+        // dd($hasil);  
+        $total=0;
+        return view('laporan', compact(['hasil','total']));
     }
+
+    public function cetakPDF()
+    {
+        $hasil = $results = DB::table('uang_masuks')
+        ->select('*')
+        ->union(DB::table('uang_keluars')->select('*'))
+        ->orderBy('tanggal')
+        ->get();
+        $total=0;
+
+
+        $pdf = PDF::loadview('pdf.laporan-pdf', compact(['hasil', 'total']));
+        // $pdf = PDF::loadview('pegawai_pdf',['pegawai'=>$pegawai]);
+    	return $pdf->download('laporan-keuangan.pdf');
+    }
+
+    public function cetakExcel()
+	{
+		return Excel::download(new LaporanExport, 'laporan.xlsx');
+	}
 }

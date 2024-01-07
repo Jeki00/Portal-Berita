@@ -34,64 +34,71 @@
                                 <th>Tanggal Dibuat</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Berakhir</th>
+                                <th>letak</th>
                                 <th></th>
                                 <th></th>
                         </thead>
                         <tbody class="text-center">
+                            @foreach ($iklan as $key => $ad)
                             <tr>
-                                <td>1</td>
-                                <td>Kopi Kapal Apa </td>
-                                <td>Indofood </td>
-                                <td>20-01-2023</td>
-                                <td>23-01-2023</td>
-                                <td>31-01-2023</td>
-                                <td><a href="/edit-iklan" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
+                                <td>{{$key+1}}</td>
+                                <td>{{ $ad['judul'] }}</td>
+                                <td>{{ $ad['perusahaan'] }}</td>
+                                <td>{{$ad['created_at']}} </td>
+                                <td>{{$ad['tanggal_keluar']}} </td>
+                                <td>{{$ad['tanggal_hilang']}}</td>
+                                <td>{{ $ad['letak'] }}</td>
+                                <td><a href="/edit-iklan/{{$ad['id']}}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
                                     <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td> 
-                                <td><a href="/edit-iklan" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                    <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </a></td> 
+                                <td>
+                                    <button data-toggle="modal" data-target="#deleteModal-{{$ad->id}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                                        <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </a>
+                                    </button>
+                                </td> 
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Teh Sosor </td>
-                                <td>Nestle </td>
-                                <td>20-02-2023</td>
-                                <td>23-02-2023</td>
-                                <td>31-02-2023</td>
-                                <td><a href="/edit-iklan" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-                                    <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td> 
-                                <td><a href="/edit-iklan" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                    <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </a></td> 
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Kacang Dua Kancil </td>
-                                <td>Indofood </td>
-                                <td>20-03-2023</td>
-                                <td>23-03-2023</td>
-                                <td>31-03-2023</td>
-                                <td><a href="/edit-iklan" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-                                    <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td> 
-                                <td><a href="/edit-iklan" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                    <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </a></td> 
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Bang - Bang </td>
-                                <td>Lokal food </td>
-                                <td>20-04-2023</td>
-                                <td>23-04-2023</td>
-                                <td>31-04-2023</td>
-                                <td><a href="/edit-iklan" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-                                    <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td> 
-                                <td><a href="/edit-iklan" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                    <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </a></td> 
-                            </tr>
-                            
-                      
+                            @endforeach
                         </tbody>
                     </table>
             
+                    <!-- Modal -->
+                    @foreach ($iklan as $item)
+                        
                     
+                    <div class="modal fade" id="deleteModal-{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <form action="/hapus-iklan/{{$item->id}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editDosenLabel">Hapus Iklan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container">
+                                            <div class="mb-3">
+                                                @if ($item->tanggal_keluar < now() and now() < $item->tanggal_hilang)
+                                                    <h5><b> Iklan sedang tayang. </b></h5>
+                                                @endif
+                                                @if (now() < $item->tanggal_keluar)
+                                                    <h5> Iklan akan tayang pada <b>{{$item->tanggal_keluar}}</b></h5>
+                                                @endif
+
+                                                <h5>Apakah Anda yakin ingin menghapus Iklan <b>{{$item->judul}}</b> dari perusahaan <b>{{$item->perusahaan}}</b> ini?</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-between">
+                                        <button type="submit" class="btn btn-danger" >Hapus</button>
+                                        <button type="button" class="btn" class="btn btn-primary" data-dismiss="modal" >Kembali</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

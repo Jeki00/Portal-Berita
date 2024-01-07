@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use app\Models\Iklan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Models;
+use App\Models\Iklan;
+use Carbon\Carbon;
+use DateTime;
+use DateInterval;
+use DatePeriod;
 
 class IklanController extends Controller
 {
@@ -16,7 +22,7 @@ class IklanController extends Controller
         //
 
         $iklan = Iklan::all();
-        return view('');
+        return view('iklan', compact('iklan'));
 
     }
 
@@ -26,7 +32,11 @@ class IklanController extends Controller
     public function create()
     {
         //
-        return view('');
+        $iklan=Iklan::where('tanggal_keluar','>',now())
+        ->orderBy('letak','asc')
+        ->orderBy('tanggal_keluar','asc')->get();
+
+        return view('tambah-iklan',compact('iklan'));
     }
 
     /**
@@ -35,22 +45,106 @@ class IklanController extends Controller
     public function store(Request $request)
     {
         //
-        if ($request->hasFile('gambar')) {
-            // put image in the public storage
-            $filePath = Storage::disk('public')->put('images/iklan/gambar_iklan', request()->file('gambar'));
-        }
+        // if ($request->hasFile('gambar')) {
+        //     // put image in the public storage
+        //     $filePath = Storage::disk('public')->put('images/iklan/gambar_iklan', request()->file('gambar'));
+        // }
 
+        // dd($request);
+        $user = Auth::user();
 
-        Iklan::create([
-            'judul'=>$request->judul,
-            'gambar'=>$filePath,
-            'tanggal_keluar'=>$request->tanggal_keluar,
-            'tanggal_hilang'=>$request->tanggal_hilang,
-            'perusahaan'=>$request->perusahaan,
-            'created_by'=>$request->created_by,
+        $validated = $request->validate([
+            'judul' => 'required',
+            'perusahaan' => 'required',
+            'letak' => 'required',
+            'tanggal_keluar' => 'required',
+            'tanggal_hilang' => 'required',
         ]);
 
-        return view('');
+        $ads = Iklan::where('letak','=',$request['letak'])->get();
+
+        
+        // $firstAd = Iklan::where('letak', '=', $request['letak'])
+        // ->where('tanggal_hilang','<', Carbon::parse($request['tanggal_keluar']))
+        // ->orderByDesc('tanggal_hilang')
+        // ->first();
+        
+        // $secondAd = Iklan::where('letak', '=', $request['letak'])
+        // ->where('tanggal_keluar','>', Carbon::parse($request['tanggal_hilang']))
+        // ->orderByDesc('tanggal_keluar')
+        // ->first();
+        
+        // $latestDate = Iklan::where('letak', '=', $request['letak'])
+        // ->latest('tanggal_hilang')
+        // ->first();
+        
+        // dd($secondAd->tanggal_keluar);
+        
+        function createDateRange($startDate, $endDate){
+            $start = new DateTime($startDate);
+            $end = new DateTime($endDate);
+            // $end = $end->modify('+1 day'); // Menambahkan satu hari untuk memasukkan tanggal akhir
+
+            $interval = new DateInterval('P1D'); // Interval setiap satu hari
+            $dateRange = new DatePeriod($start, $interval, $end);
+            
+            $dates = [];
+            foreach ($dateRange as $date) {
+                $dates[] = $date->format("Y-m-d");
+            }
+            
+            return $dates;
+        }
+
+        $req_tgl_keluar = Carbon::parse($request['tanggal_keluar']);
+        $req_tgl_hilang = Carbon::parse($request['tanggal_hilang'])->addDay()->subSecond();
+
+        // error ketika tanggal keluar dan tanggal hilang tidak sesuai
+        if($req_tgl_keluar>$req_tgl_hilang){
+            return redirect()->back()->with([
+                'error'=>'Tanggal berakhir harus tanggal besok atau seterusnya dari tanggal mulai. Mohon cek kembali' ,
+                'judul'=>$request['judul'],
+                'perusahaan'=>$request->perusahaan,
+                'letak'=>$request['letak'],
+                'tanggal_keluar'=>$request['tanggal_keluar'],
+                'tanggal_hilang'=>$request['tanggal_hilang']
+            ]);
+        }
+        foreach ($ads as $key => $ad) {
+            if(count(array_intersect(createDateRange($ad->tanggal_keluar,$ad->tanggal_hilang) , createDateRange($req_tgl_keluar, $req_tgl_hilang) )) !=0){
+                // dd(createDateRange($ad->tanggal_keluar,$ad->tanggal_hilang));
+                return redirect()->back()->with([
+                    'error'=>'space Iklan telah diisi oleh iklan '. $ad['judul'] .' dari '. $ad['perusahaan'] ,
+                    'judul'=>$request['judul'],
+                    'perusahaan'=>$request->perusahaan,
+                    'letak'=>$request['letak'],
+                    'tanggal_keluar'=>$request['tanggal_keluar'],
+                    'tanggal_hilang'=>$request['tanggal_hilang'],
+                ]);
+            }
+        }
+
+        $gambarIklan = 'iklan-' . $request->perusahaan . '-' . time() . '.' . $request['gambar_iklan']->extension();
+        $buktiTranser = 'bukti_transfer-' . $request->perusahaan . '-' . time() . '.' . $request['bukti_transfer']->extension();
+
+        $request['gambar_iklan']->storeAs('public/images/iklan', $gambarIklan);
+        $request['bukti_transfer']->storeAs('public/images/bukti_transfer', $buktiTranser);
+        // dd($user->id);
+
+        
+        Iklan::create([
+            'judul'=>$request->judul,
+            'gambar'=>$gambarIklan,
+            'tanggal_keluar'=>$req_tgl_keluar,
+            'tanggal_hilang'=>$req_tgl_hilang,
+            'letak'=>$request['letak'],
+            'bukti_transfer'=>$buktiTranser,
+            'perusahaan'=>$request->perusahaan,
+            'created_by'=>$user->id,
+        ]);
+
+        return redirect('/iklan');
+        
     }
 
     /**
@@ -60,7 +154,9 @@ class IklanController extends Controller
     {
         $iklan = Iklan ::find($id);
 
-        return view('',compact($iklan));
+        dd($iklan);
+
+        return view('',compact(iklan));
     }
 
     /**
@@ -68,9 +164,13 @@ class IklanController extends Controller
      */
     public function edit(string $id)
     {
-        $iklan = Iklan ::find($id);
+        $iklan = Iklan::find($id);
+        $daftar=Iklan::where('tanggal_keluar','>',now())
+        ->orderBy('letak','asc')
+        ->orderBy('tanggal_keluar','asc')->get();
 
-        return view('',compact($iklan));
+        // dd($iklan);
+        return view('edit-iklan',["iklan"=>$iklan,'daftar'=>$daftar]);
     }
 
     /**
@@ -80,21 +180,132 @@ class IklanController extends Controller
     {
         //
 
-        if ($request->hasFile('gambar')) {
-            // put image in the public storage
-            $filePath = Storage::disk('public')->put('images/iklan/gambar_iklan', request()->file('gambar'));
+        $user = Auth::user();
+
+        // dd($request['gambar_iklan']);
+
+        // $validated = $request->validate([
+        //     'judul' => 'required',
+        //     'perusahaan' => 'required',
+        //     'letak' => 'required',
+        //     'tanggal_keluar' => 'required',
+        //     'tanggal_hilang' => 'required',
+        // ]);
+
+        $ads = Iklan::where('letak','=',$request['letak'])->get();
+
+        // dd(count($ads));
+
+        function createDateRange($startDate, $endDate){
+            $start = new DateTime($startDate);
+            $end = new DateTime($endDate);
+            // $end = $end->modify('+1 day'); // Menambahkan satu hari untuk memasukkan tanggal akhir
+
+            $interval = new DateInterval('P1D'); // Interval setiap satu hari
+            $dateRange = new DatePeriod($start, $interval, $end);
+            
+            $dates = [];
+            foreach ($dateRange as $date) {
+                $dates[] = $date->format("Y-m-d");
+            }
+            
+            return $dates;
         }
 
-        $draft = Draft::find($id)->update([
-            'judul'=>$request->judul,
-            'gambar'=>$filePath,
-            'tanggal_keluar'=>$request->tanggal_keluar,
-            'tanggal_hilang'=>$request->tanggal_hilang,
-            'perusahaan'=>$request->perusahaan,
-            'created_by'=>$request->created_by,
-        ]);
+        $req_tgl_keluar = Carbon::parse($request['tanggal_keluar']);
+        $req_tgl_hilang = Carbon::parse($request['tanggal_hilang'])->addDay()->subSecond();
 
-        return view('');
+        if($req_tgl_keluar>$req_tgl_hilang){
+            return redirect()->route('editIklan', ['id'=>$id])->with([
+                'error'=>'Tanggal berakhir harus tanggal besok atau seterusnya dari tanggal mulai. Mohon cek kembali' ,
+            ]);
+        }
+
+        //jika tidak ada letak iklan yang sama
+        if(count($ads)==0){
+            if($request['gambar_iklan']==null){
+                $iklan = Iklan ::find($id);
+                $gambarIklan = $iklan['gambar'];
+            }else{
+                $gambarIklan = 'iklan-' . $request->perusahaan . '-' . time() . '.' . $request['gambar_iklan']->extension();
+                $request['gambar_iklan']->storeAs('public/images/iklan', $gambarIklan);
+            }
+    
+            //gambar bukti iklan
+            if($request['bukti_transfer']==null){
+                $iklan = Iklan ::find($id);
+                $buktiTranser = $iklan['bukti_transfer'];
+            }else{
+                $buktiTranser = 'bukti_transfer-' . $request->perusahaan . '-' . time() . '.' . $request['bukti_transfer']->extension();
+                $request['bukti_transfer']->storeAs('public/images/bukti_transfer', $buktiTranser);
+            }
+    
+    
+            $draft = Iklan::find($id)->update([
+                'judul'=>$request->judul,
+                'gambar'=>$gambarIklan,
+                'tanggal_keluar'=>$req_tgl_keluar,
+                'tanggal_hilang'=>$req_tgl_hilang,
+                'letak'=>$request->letak,
+                'bukti_transfer'=>$buktiTranser,
+                'perusahaan'=>$request->perusahaan,
+                'created_by'=>$user->id,
+            ]);
+    
+            return redirect()->route('iklan');
+        }
+        foreach ($ads as $key => $ad) {
+            if(count(array_intersect(createDateRange($ad->tanggal_keluar,$ad->tanggal_hilang) , createDateRange($req_tgl_keluar, $req_tgl_hilang) )) !=0){
+                // dd(createDateRange($ad->tanggal_keluar,$ad->tanggal_hilang));
+                if($ad->id == $id){
+                    if($request['gambar_iklan']==null){
+                        $iklan = Iklan ::find($id);
+                        $gambarIklan = $iklan['gambar'];
+                    }else{
+                        $gambarIklan = 'iklan-' . $request->perusahaan . '-' . time() . '.' . $request['gambar_iklan']->extension();
+                        $request['gambar_iklan']->storeAs('public/images/iklan', $gambarIklan);
+                    }
+            
+                    //gambar bukti iklan
+                    if($request['bukti_transfer']==null){
+                        $iklan = Iklan ::find($id);
+                        $buktiTranser = $iklan['bukti_transfer'];
+                    }else{
+                        $buktiTranser = 'bukti_transfer-' . $request->perusahaan . '-' . time() . '.' . $request['bukti_transfer']->extension();
+                        $request['bukti_transfer']->storeAs('public/images/bukti_transfer', $buktiTranser);
+                    }
+            
+            
+                    $draft = Iklan::find($id)->update([
+                        'judul'=>$request->judul,
+                        'gambar'=>$gambarIklan,
+                        'tanggal_keluar'=>$req_tgl_keluar,
+                        'tanggal_hilang'=>$req_tgl_hilang,
+                        'letak'=>$request['letak'],
+                        'bukti_transfer'=>$buktiTranser,
+                        'perusahaan'=>$request->perusahaan,
+                        'created_by'=>$user->id,
+                    ]);
+                    
+                    // dd($draft);
+                    return redirect('/iklan');
+
+                }else{
+                    return redirect()->back()->with([
+                        'error'=>'space Iklan telah diisi oleh iklan '. $ad['judul'] .' dari '. $ad['perusahaan'] ,
+                        'judul'=>$request['judul'],
+                        'perusahaan'=>$request->perusahaan,
+                        'letak'=>$request['letak'],
+                        'tanggal_keluar'=>$request['tanggal_keluar'],
+                        'tanggal_hilang'=>$request['tanggal_hilang'],
+                    ]);
+                }
+            }
+        }
+
+
+
+        
     }
 
     /**
@@ -104,6 +315,7 @@ class IklanController extends Controller
     {
         //
         Iklan::destroy($id);
-        return redirect()->route('');
+        
+        return redirect('/iklan');
     }
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('gambar');
             $table->timestamp('tanggal_keluar')->nullable();
             $table->timestamp('tanggal_hilang')->nullable();
+            $table->string('letak');
+            $table->string('bukti_transfer');
             $table->string('perusahaan');
             $table->integer('created_by');
             $table->timestamps();

@@ -25,8 +25,8 @@
                                     <i class="fas fa-download fa-md text-secondary-50"></i> Export
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-white" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/pengadaan/pdf"><i class="fas fa-file-pdf fa-fw mr-2 text-gray-400"></i>PDF</a>
-                                    <a class="dropdown-item" href="/pengadaan/excel"><i class="fas fa-file-excel fa-md fa-fw mr-2 text-gray-400"></i>Excel</a>
+                                    <a class="dropdown-item" href="/laporan/pdf"><i class="fas fa-file-pdf fa-fw mr-2 text-gray-400"></i>PDF</a>
+                                    <a class="dropdown-item" href="/laporan/excel"><i class="fas fa-file-excel fa-md fa-fw mr-2 text-gray-400"></i>Excel</a>
                                 </div>
                             </div>
                             <a href="#" class=" float-right d-none d-md-inline-block btn btn-md btn-outline-primary shadow-md mr-4" data-toggle="modal" data-target="#periodeModal">
@@ -44,39 +44,27 @@
                                 <th>Saldo</th>
                         </thead>
                         <tbody class="text-center">
-                            <tr>
-                                <td>1</td>
-                                <td>20-01-2023</td>
-                                <td>Iklan Kopi Kapal Apa</td>
-                                <td>1000000</td>
+                            @foreach ($hasil as $key => $item)
+                                <tr>
+                                    <td>{{ $key+1 }}</td>
+                                    <td>{{ $item->tanggal }} </td>
+                                    <td>{{ $item->keterangan }} </td>
+                            @if (Str::startsWith($item->id, 'pemasukan-'))
+                                <td>{{$item->nominal}}</td>
                                 <td></td>
-                                <td>1000000</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>20-02-2023</td>
-                                <td>Iklan Teh Sosor </td>
-                                <td>700000</td>
+                                @php
+                                    $total +=$item->nominal
+                                @endphp
+                            @else
                                 <td></td>
-                                <td>1700000</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>20-03-2023</td>
-                                <td>Withdraw User</td>
-                                <td></td>
-                                <td>900000</td>
-                                <td>800000</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>20-04-2023</td>
-                                <td>Iklan Bang - Bang </td>
-                                <td>1200000</td>
-                                <td></td>
-                                <td>2000000</td>
-                            </tr>
-
+                                <td>{{$item->nominal}}</td>
+                                @php
+                                    $total -=$item->nominal
+                                @endphp
+                            @endif
+                                    <td style="width: 100px">{{$total}}</td>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>

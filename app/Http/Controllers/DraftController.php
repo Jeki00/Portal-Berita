@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\Draft;
+use Illuminate\Support\Facades\Auth;
+use App\Models;
+use App\Models\Draft;
+
+
 
 class DraftController extends Controller
 {
@@ -13,11 +17,9 @@ class DraftController extends Controller
     public function index()
     {
         //
-
-        $user = Auth::user();
-        $drafts = $user->drafts;
+    
         
-        return view('', compact($drafts));
+        return view('draft');
 
     }
 
@@ -27,7 +29,8 @@ class DraftController extends Controller
     public function create()
     {
         //
-        return view('');
+
+        return view('buat-postingan');
     }
 
     /**
@@ -35,23 +38,33 @@ class DraftController extends Controller
      */
     public function store(Request $request)
     {
-        // $draft = new Draft;
-        // $draft->judul = $request->judul;
+        //
 
-        if ($request->hasFile('thumbnail')) {
-            // put image in the public storage
-            $filePath = Storage::disk('public')->put('images/posts/thumbnail', request()->file('thumbnail'));
-        }
+        $user = Auth::user();
 
+        // dd($request);
+
+        $fileName = time() . '.' . $request->thumbnail->extension();
+        $request->thumbnail->storeAs('public/images/thumbnail', $fileName);
+        
         Draft::create([
-            'thumbnail'=>$filePath,
+            'thumbnail'=>$fileName,
             'judul'=>$request->judul,
-            'kata_kunci'=>$request->kata_kunci,
+            'kata_kunci'=>$request->kunci,
             'isi'=>$request->isi,
-            'created_by'=>$request->user_id
+            'status'=>'simpan',
+            'created_by'=>$user->id
         ]);
+        
+        // if ($request->hasFile('thumbnail')) {
+        //     // put image in the public storage
+        //     $filePath = Storage::disk('public')->put('images/posts/thumbnail', request()->file('thumbnail'));
+        // }
 
-        return view('');
+
+
+
+        return redirect()->route('draft');
 
     }
 

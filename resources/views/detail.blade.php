@@ -124,7 +124,7 @@
                                 <div class="col-lg-8">
                                     <h3 class="mr-20">Komentar :</h3><br>
 
-                                    <form class="form-contact contact_form mb-80" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                                    <form class="form-contact contact_form mb-80" action="" method="post" id="contactForm" novalidate="novalidate">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
