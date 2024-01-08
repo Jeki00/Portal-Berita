@@ -20,8 +20,8 @@
                     <div class="text-center">
                         <h1 class="h4 subhead text-blue-100 mb-3" >Dompet</h1>
                     </div>
-                    {{-- <form action="/" method="POST">
-                    @csrf --}}
+                    <form  id="selectedRowsForm" method="post" action="{{ route('storeSelectedRows') }}">
+                    @csrf
                     <table class="table table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead class="text-center">
                             <tr>
@@ -34,65 +34,32 @@
                                 <th></th>
                         </thead>
                         <tbody class="text-center">
+                            @foreach ($dompets as $dompet)
                             <tr>
-                                <td>1</td>
-                                <td>Prestasi Capres dan Cawapres </td>
-                                <td>20-01-2023</td>
-                                <td>50</td>
-                                <td>2000</td>
-                                <td>100000</td>
-                                <td>  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Palestina akan merdeka </td>
-                                <td>06-09-2023</td>
-                                <td>100</td>
-                                <td>1500</td>
-                                <td>150000</td>
-                                <td>  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$dompet->berita->review->draft->judul}} </td>
+                                <td>{{$dompet->tanggal}}</td>
+                                <td>{{$dompet->berita->review->komisi}}</td>
+                                <td>{{$dompet->view}}</td>
+                                <td>{{ intval($dompet->view) * intval($dompet->berita->review->komisi) }}</td>
+                                <td><input class="form-check-input" type="checkbox" name="selected_rows[]" value="{{ $dompet->id }}">
+                                </td>
 
                             </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Libur tahun baru 2024 </td>
-                                <td>03-06-2023</td>
-                                <td>70</td>
-                                <td>2000</td>
-                                <td>140000</td>
-                                <td>  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Prediksi Pemenang Liga Champion musim ini </td>
-                                <td>17-05-2023</td>
-                                <td>60</td>
-                                <td>3000</td>
-                                <td>180000</td>
-                                <td>  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Kasus pembunuhan di desa konoha </td>
-                                <td>30-09-2023</td>
-                                <td>30</td>
-                                <td>500</td>
-                                <td>15000</td>
-                                <td>  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                            </tr>
-                      
+                            @endforeach
+                          
+                            
                         </tbody>
                     </table>
                     <br>
                     <br>
-                    <h1 class="h4 subhead mb-3 text-right" >Jumlah saldo yang ingin anda tarik adalah : Rp xxxxxx</h1>
-
-                    <a href="/form-withdraw"><button class="btn btn-login btn-user btn-regist5" type='submit'>
+                    <button class="btn btn-login btn-user btn-regist4" type="button" onclick="calculateAndSubmit()">Tarik Tunai</button>
+                    {{-- <button class="btn btn-login btn-user btn-regist4" type='submit'>
                         Tarik Tunai
-                    </button></a>
-                    {{-- </form> --}}
+                    </button></a> --}}
+                    <br>
+                    <br>
+                    </form>
                 </div>
             </div>
         </div>
@@ -109,5 +76,28 @@
 
 @include ('layouts.footer-menu')
 @include ('layouts.script')
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function calculateAndSubmit() {
+        var totalIncome = 0;
+        // Loop through selected rows and calculate total income
+        $('input[name="selected_rows[]"]:checked').each(function () {
+            var row = $(this).closest('tr');
+            var income = parseFloat(row.find('td:eq(5)').text()); // Assuming the income is in the 6th column
+            totalIncome += income;
+        });
+
+        // Check if total income meets the minimum threshold (adjust the threshold as needed)
+        var minimumThreshold = 50000; // Adjust this value
+        if (totalIncome >= minimumThreshold) {
+            // If total income is sufficient, submit the form
+            $('#selectedRowsForm').submit();
+        } else {
+            // If total income is not sufficient, display an alert or take other actions
+            alert('Total income is below the minimum (Rp 50.000)'); 
+        }
+    }
+</script>
 
 </html>

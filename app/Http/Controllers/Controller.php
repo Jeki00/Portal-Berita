@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
@@ -31,14 +32,14 @@ class Controller extends BaseController
     {
         return view('buat-postingan');
     }
-    public function draft()
+
+    public function showThumbnail($imageName)
     {
-        return view('draft');
+        $path = public_path('upload/' . $imageName);
+
+        return response()->file($path);
     }
-    public function reviewDraft()
-    {
-        return view('review-draft');
-    }
+
     public function postinganku()
     {
         return view('postinganku');

@@ -23,11 +23,12 @@
                             <div class="text-center">
                                 <h1 class="h4 subhead text-blue-100 mb-3" >Buat Postingan</h1>
                             </div>
-                            <form class="user" action='/edit-akun' method='POST'>
+
+                            <form class="user" action='/buat-postingan' method='POST' enctype="multipart/form-data">
                                 @csrf
                                     <div class="form-group">
                                         <h6 class="h6 text-blue-100 mb-1">Thumbnail</h6>
-                                        <input class="form-control form-control-lg" id="thumbnail" type="file">
+                                        <input class="form-control form-control-lg" title="thumbnail" id="thumbnail" type="file" accept="image/*" name="thumbnail">
                                     </div>
                                    
                                 <div class="form-group">
@@ -42,7 +43,7 @@
                                 </div>
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Isi Berita</h6>
-                                    <textarea class="form-control form-control-user" id="isi" name="isi" rows="3"></textarea>
+                                    <textarea class="form-control form-control-user" id="isi" name="isi" title="isi" rows="3"></textarea>
         
                                 </div>
   
@@ -50,6 +51,8 @@
                                     Simpan
                                 </button>
                             </form>
+
+                           
                             
                         </div>
                     </div>
@@ -59,6 +62,12 @@
     </div>
 
 </body>
+
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script>
+        CKEDITOR.replace('isi');
+
+</script>
 
 @include ('layouts.footer-menu')
 @include ('layouts.script')

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use App\Models\Kategori;
 use App\Models\Draft;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Review extends Model
 {
@@ -15,10 +16,21 @@ class Review extends Model
     protected $fillable = [
         'id_draft',
         'status',
-        'id_kategori',
+        'id_category',
         'komisi',
         'catatan',
     ];
+
+    public static function customCreate($id_draft, $status, $id_category, $komisi, $catatan)
+    {
+        return Review::create([
+            'id_draft' => $id_draft,
+            'status' => $status,
+            'id_category' => $id_category,
+            'komisi' => $komisi,
+            'catatan' => $catatan,
+        ]);
+    }
 
     public function kategori(): BelongsTo
     {
@@ -28,8 +40,8 @@ class Review extends Model
     {
         return $this->belongsTo(Draft::class, 'id_draft');
     }
-    public function berita(): BelongsTo
+    public function berita(): HasOne
     {
-        return $this->belongsTo(Berita::class, 'id_review');
+        return $this->hasOne(Berita::class, 'id_review');
     }
 }

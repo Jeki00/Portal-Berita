@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 use App\Models\Komentar;
 use App\Models\Review;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Berita extends Model
 {
@@ -19,13 +20,25 @@ class Berita extends Model
         'view',
     ];
 
+    public static function customCreate($id_review, $view)
+    {
+        return Berita::create([
+            'id_review' => $id_review,
+            'view' => $view
+        ]);
+    }
+
     public function komentars(): HasMany
     {
         return $this->hasMany(Komentar::class, 'id_berita');
     }
-
-    public function review(): HasOne
+    public function dompets(): HasMany
     {
-        return $this->hasOne(Review::class, 'id_review');
+        return $this->hasMany(Dompet::class, 'id_berita');
+    }
+
+    public function review(): BelongsTo
+    {
+        return $this->belongsTo(Review::class, 'id_review');
     }
 }

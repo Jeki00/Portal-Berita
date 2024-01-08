@@ -23,62 +23,67 @@
                             <div class="text-center">
                                 <h1 class="h4 subhead text-blue-100 mb-3" >Review Berita</h1>
                             </div>
-                            <form class="user" action='/edit-akun' method='POST'>
+                            <form class="user" action='/review-berita' method='POST'>
                                 @csrf
+
+                                <input type="hidden" name="review_id" value="{{ $reviews->id }}">
+
                                     <div class="form-group">
                                         <h6 class="h6 text-blue-100 mb-1">Thumbnail</h6>
-                                        <input class="form-control form-control-lg" id="thumbnail" type="file" disabled>
+                                        <img src="{{ route('thumbnail.show', ['imageName' => $reviews->draft->thumbnail]) }}" alt="Thumbnail">
                                     </div>
                                    
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Judul Berita</h6>
-                                    <input type="text" class="form-control form-control-user" id="judul" name="judul" placeholder="Masukkan Judul" required readonly>
+                                    <input type="text" class="form-control form-control-user" id="judul" name="judul" value="{{$reviews->draft->judul}}" readonly>
         
                                 </div>
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Kata Kunci</h6>
-                                    <input type="text" class="form-control form-control-user" id="kunci" name="kunci" placeholder="Masukkan kata kunci" required readonly>
+                                    <input type="text" class="form-control form-control-user" id="kunci" name="kunci" value="{{$reviews->draft->kata_kunci}}" readonly>
         
                                 </div>
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Isi Berita</h6>
-                                    <textarea class="form-control form-control-user" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+                                    <textarea class="form-control form-control-user" id="isi" name="isi" rows="3" disabled>{{$reviews->draft->isi}}</textarea>
         
                                 </div>
 
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Kategori</h6>
                                     <select class="form-control" id="kategori" name="kategori">
-                                        <option value="Politik">Politik</option>
-                                        <option value="Dunia">Dunia</option>
-                                        <option value="Ekonomi">Ekonomi</option>
-                                        <option value="Sains & Teknologi">Sains & Teknologi</option>
-                                        <option value="Bisnis">Bisnis</option>
-                                        <option value="Travel">Travel</option>
-                                        <option value="Iklim">Iklim</option>
+                                        <option value="1">Politik</option>
+                                        <option value="2">Dunia</option>
+                                        <option value="3">Ekonomi</option>
+                                        <option value="4">Sains & Teknologi</option>
+                                        <option value="5">Bisnis</option>
+                                        <option value="6">Travel</option>
+                                        <option value="7">Iklim</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Komisi</h6>
-                                    <input type="text" class="form-control form-control-user" id="komisi" name="komisi" placeholder="Masukkan Komisi" required>
+                                    <input type="text" class="form-control form-control-user" id="komisi" name="komisi" placeholder="Masukkan Komisi" value="{{$reviews->komisi}}" required>
         
                                 </div>
 
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Isi Catatan</h6>
-                                    <textarea class="form-control form-control-user" id="catatan" name="catatan" rows="3"></textarea>
+                                    <textarea class="form-control form-control-user" id="catatan" name="catatan" rows="3" >{{$reviews->catatan}}</textarea>
         
                                 </div>
                                 
+                                @can("admin")
                                 <div class="">
-                                <button class="btn btn-login btn-user btn-regist2" type='submit'>
+                                <button class="btn btn-login btn-user btn-regist2" type='submit' name="action" value="tolak">
                                     Tolak
                                 </button>
 
-                                <button class="btn btn-login btn-user btn-regist3" type='submit'>
+                                <button class="btn btn-login btn-user btn-regist3" type='submit' name="action" value="submit">
                                     Publish
                                 </button>
                                 </div>
+                                @endcan
                             </form>
                             
                         </div>
@@ -89,7 +94,11 @@
     </div>
 
 </body>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script>
+        CKEDITOR.replace('isi');
 
+</script>
 @include ('layouts.footer-menu')
 @include ('layouts.script')
 

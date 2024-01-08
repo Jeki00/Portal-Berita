@@ -21,23 +21,18 @@
                         <h1 class="h4 subhead text-blue-100 mb-3" >Detail Withdraw</h1>
                     </div>
 
-                    <form class="user" action='' method='POST'>
+                    <div>
+                        <h1 class="h4 subhead  mb-3" >Kode Request : {{$details->kode_request}}</h1>
+                    </div>
+
+                    <form class="user" action='/detail-withdraw' method='POST'>
                         @csrf
                        
-
-                        <div class="form-group">
-                            <h6 class="h6 text-blue-100 mb-1">Email</h6>
-                            <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="email" name="email" placeholder="Masukkan Email anda"  autocomplete="email" readonly>
-                            @error('email')
-                            <div class="error">
-                                <p style="font-size: 13px;color: red;"> {{$message}} </p>
-                            </div>
-                            @enderror
-                        </div>
+                        <input type="hidden" name="withdraw_id" value="{{ $details->id }}">
 
                         <div class="form-group">
                             <h6 class="h6 text-blue-100 mb-1">Nama Pemilik Kartu</h6>
-                            <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" id="name" name='name' readonly placeholder="Masukkan nama Anda" value="{{ old('name') }}"  autocomplete="name" autofocus>
+                            <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" id="name" name='name' readonly placeholder="Masukkan nama Anda" value="{{$details->nama_pemilik_kartu}}"  autocomplete="name" autofocus>
                             @error('name')
                             <div class="error">
                                 <p style="font-size: 13px;color: red;"> {{$message}} </p>
@@ -47,7 +42,7 @@
 
                         <div class="form-group">
                             <h6 class="h6 text-blue-100 mb-1">Nomor Rekening</h6>
-                            <input type="text" class="form-control form-control-user @error('no_rek') is-invalid @enderror" id="no_rek" readonly name="no_rek" placeholder="Masukkan nomor rekening anda"  autocomplete="no_rek">
+                            <input type="text" class="form-control form-control-user @error('no_rek') is-invalid @enderror" id="no_rek" readonly name="no_rek" value="{{$details->no_rekening}}" placeholder="Masukkan nomor rekening anda"  autocomplete="no_rek">
                             @error('no_rek')
                             <div class="error">
                                 <p style="font-size: 13px;color: red;"> {{$message}} </p>
@@ -57,7 +52,7 @@
 
                         <div class="form-group">
                             <h6 class="h6 text-blue-100 mb-1">Negara</h6>
-                            <input type="text" class="form-control form-control-user @error('negara') is-invalid @enderror" readonly id="negara" negara='negara' placeholder="Masukkan nama negara Anda" value="{{ old('negara') }}"  autocomplete="negara" autofocus>
+                            <input type="text" class="form-control form-control-user @error('negara') is-invalid @enderror" readonly id="negara" negara='negara' placeholder="Masukkan nama negara Anda" value="{{$details->negara}}"  autocomplete="negara" autofocus>
                             @error('negara')
                             <div class="error">
                                 <p style="font-size: 13px;color: red;"> {{$message}} </p>
@@ -67,7 +62,7 @@
 
                         <div class="form-group">
                             <h6 class="h6 text-blue-100 mb-1">Nominal</h6>
-                            <input type="text" class="form-control form-control-user @error('nominal') is-invalid @enderror" readonly id="nominal" nominal='nominal' placeholder="Masukkan nominal" value="{{ old('nominal') }}"  autocomplete="nominal" autofocus>
+                            <input type="text" class="form-control form-control-user @error('nominal') is-invalid @enderror" readonly id="nominal" nominal='nominal' placeholder="Masukkan nominal" value="{{$details->nominal}}"  autocomplete="nominal" autofocus>
                             @error('nominal')
                             <div class="error">
                                 <p style="font-size: 13px;color: red;"> {{$message}} </p>
@@ -76,13 +71,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1" class="font-weight-bold text-primary mt-4">Tanggal Pengajuan</label>
-                                <div class="input-group date" id="datetimepicker1">
-                                    <input type="date" class="form-control form-control-md" name="tgl-pengajuan" readonly>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
+                            <h6 class="h6 text-blue-100 mb-1">Tanggal Pengajuan</h6>
+                            <input type="text" class="form-control form-control-user @error('tanggal-pengajuan') is-invalid @enderror"   id="tanggal-pengajuan" name='tanggal-pengajuan' value="{{$details->created_at}}" placeholder="Masukkan tanggal-pengajuan"  autocomplete="tanggal-pengajuan" autofocus readonly>
+                            @error('tanggal-pengajuan')
+                            <div class="error">
+                                <p style="font-size: 13px;color: red;"> {{$message}} </p>
+                            </div>
+                            @enderror
                         </div>
 
                         <div class="">

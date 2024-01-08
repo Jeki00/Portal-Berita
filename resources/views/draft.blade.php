@@ -20,6 +20,9 @@
                     <div class="text-center">
                         <h1 class="h4 subhead text-blue-100 mb-3" >Draft Postingan</h1>
                     </div>
+                    @if(session('success'))
+                                <p>{{ session('success') }}</p>
+                            @endif
                     <table class="table table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead class="text-center">
                             <tr>
@@ -27,53 +30,21 @@
                                 <th>Judul</th>
                                 <th>Kata Kunci</th>
                                 <th>Aksi</th>
+                            </tr>
                         </thead>
                         <tbody class="text-center">
+                            @foreach ($drafts as $draft)
                             <tr>
-                                <td>1</td>
-                                <td>Prestasi Capres dan Cawapres </td>
-                                <td>Pemilu</td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$draft->judul}} </td>
+                                <td>{{$draft->kata_kunci}}</td>
                                 <td>
-                                <a href="/review-draft">
+                                <a href="{{route('reviewDraft',['id'=> $draft->id ])}}">
                                         <span class="text">Review</span>
-                                    </a>
+                                </a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Palestina akan merdeka </td>
-                                <td>Palestina</td>
-                                <td>
-                                <a href="/review-draft">
-                                        <span class="text">Review</span>
-                                    </a>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Libur tahun baru 2024 </td>
-                                <td>Liburan</td>
-                                <td>
-                                <a href="/review-draft">
-                                        <span class="text">Review</span>
-                                    </a>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Prediksi Pemenang Liga Champion musim ini </td>
-                                <td>Sepak bola</td>
-                                <td>
-                                <a href="/review-draft">
-                                        <span class="text">Review</span>
-                                    </a>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Kasus pembunuhan di desa konoha </td>
-                                <td>kriminalitas</td>
-                                <td>
-                                <a href="/review-draft">
-                                        <span class="text">Review</span>
-                                    </a>
-                            </tr>
+                            @endforeach
                       
                         </tbody>
                     </table>

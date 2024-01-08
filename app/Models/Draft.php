@@ -22,6 +22,18 @@ class Draft extends Model
         'status',
     ];
 
+    public static function customCreate($thumbnail, $judul, $kata_kunci, $isi, $status, $user)
+    {
+        return Draft::create([
+            'thumbnail' => $thumbnail,
+            'judul' => $judul,
+            'kata_kunci' => $kata_kunci,
+            'isi' => $isi,
+            'status' => $status,
+            'created_by' => $user
+        ]);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

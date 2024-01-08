@@ -33,7 +33,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'no_hp',
-        'no_rekening'
     ];
 
     /**
@@ -56,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
-    public static function customCreate($id_role, $name, $password, $email, $no_hp, $no_rekening)
+    public static function customCreate($id_role, $name, $password, $email, $no_hp)
     {
         return User::create([
             'id_role' => $id_role,
@@ -64,7 +63,6 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => $password,
             'email' => $email,
             'no_hp' => $no_hp,
-            'no_rekening' => $no_rekening,
         ]);
     }
 
