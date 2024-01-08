@@ -30,7 +30,6 @@
                                         <h6 class="h6 text-blue-100 mb-1">Thumbnail</h6>
                                         <input class="form-control form-control-lg" title="thumbnail" id="thumbnail" type="file" accept="image/*" name="thumbnail">
                                     </div>
-                                   
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Judul Berita</h6>
                                     <input type="text" class="form-control form-control-user" id="judul" name="judul" placeholder="Masukkan Judul" required>

@@ -17,7 +17,10 @@ class Iklan extends Model
         'gambar',
         'tanggal_keluar',
         'tanggal_hilang',
+        'letak',
+        'bukti_transfer',
         'perusahaan',
+        'created_by',
     ];
 
     public function user(): BelongsTo

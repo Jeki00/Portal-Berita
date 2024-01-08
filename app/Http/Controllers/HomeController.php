@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Iklan;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $ads = Iklan::where('letak','utama')
+        ->where('tanggal_keluar','<',now())
+        ->where('tanggal_hilang','>', now())->get();
+
+        // dd($ads);
+
+        return view('home', compact('ads'));
     }
 }

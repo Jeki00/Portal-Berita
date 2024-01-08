@@ -601,7 +601,19 @@
                 </div>
                 <!-- New Poster -->
                 <div class="news-poster d-none d-lg-block">
-                    <img src="{{asset('template/img/news/news_card.jpg')}}" alt="">
+                    @foreach ($ads as $ad)
+                        @if($ad->letak=='utama')
+                        @php
+                            $mainAd = $ad
+                        @endphp
+                        @endif
+                        
+                    @endforeach
+                    @if (isset($mainAd))
+                        <img src="{{ asset("storage/images/iklan/". $mainAd->gambar )  }}" alt="{{$mainAd->judul}}" width="300" height="755">
+                    @else
+                        <img src="{{asset('template/img/news/no_space.png')}}" alt="">
+                    @endif
                 </div>
             </div>
             </div>

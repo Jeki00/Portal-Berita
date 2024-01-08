@@ -12,5 +12,10 @@ class UangKeluar extends Model
         'tanggal',
         'keterangan',
         'nominal',
+        'id'
     ];
+
+    protected $primaryKey = 'id';
+
+    public $incrementing = false;
 }

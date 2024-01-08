@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use App\Models\Komentar;
 use App\Models\Review;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -40,5 +40,10 @@ class Berita extends Model
     public function review(): BelongsTo
     {
         return $this->belongsTo(Review::class, 'id_review');
+    }
+
+    public function draft(): HasOneThrough
+    {
+        return $this->through('reviews')->has('draft');
     }
 }

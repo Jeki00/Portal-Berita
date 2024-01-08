@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 resources/views/beranda.blade.php
 resources/views/layouts/page.blade.php
+app/Http/Controllers/DraftController.php

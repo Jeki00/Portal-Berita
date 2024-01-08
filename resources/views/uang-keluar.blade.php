@@ -25,8 +25,8 @@
                                     <i class="fas fa-download fa-md text-secondary-50"></i> Export
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-white" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/pengadaan/pdf"><i class="fas fa-file-pdf fa-fw mr-2 text-gray-400"></i>PDF</a>
-                                    <a class="dropdown-item" href="/pengadaan/excel"><i class="fas fa-file-excel fa-md fa-fw mr-2 text-gray-400"></i>Excel</a>
+                                    <a class="dropdown-item" href="/pengeluaran/pdf"><i class="fas fa-file-pdf fa-fw mr-2 text-gray-400"></i>PDF</a>
+                                    <a class="dropdown-item" href="/pengeluaran/excel"><i class="fas fa-file-excel fa-md fa-fw mr-2 text-gray-400"></i>Excel</a>
                                 </div>
                             </div>
                             <a href="#" class=" float-right d-none d-md-inline-block btn btn-md btn-outline-primary shadow-md mr-4" data-toggle="modal" data-target="#periodeModal">
@@ -46,47 +46,19 @@
                                 <th></th>
                         </thead>
                         <tbody class="text-center">
-                            <tr>
-                                <td>1</td>
-                                <td>20-01-2023</td>
-                                <td>Withdraw User</td>
-                                <td>1000000</td>
-                                <td><a href="/edit-pengeluaran" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-                                        <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td>
-                                <td><a href="/edit-pengeluaran" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                        <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>20-02-2023</td>
-                                <td>Gaji Karyawan</td>
-                                <td>700000</td>
-                                <td><a href="/edit-pengeluaran" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-                                        <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td>
-                                <td><a href="/edit-pengeluaran" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                        <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>20-03-2023</td>
-                                <td> Maintenance Server</td>
-                                <td>900000</td>
-                                <td><a href="/edit-pengeluaran" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-                                        <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td>
-                                <td><a href="/edit-pengeluaran" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                        <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>20-04-2023</td>
-                                <td>Withdraw User</td>
-                                <td>800000</td>
-                                <td><a href="/edit-pengeluaran" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-                                        <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td>
-                                <td><a href="/edit-pengeluaran" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-                                        <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </a></td>
-                            </tr>
-
+                            @foreach ($pengeluaran as $key => $keluar)
+                                <tr>
+                                    <td>{{$key+1 }}</td>
+                                    <td>{{$keluar['tanggal']}}</td>
+                                    <td>{{$keluar['keterangan']}}</td>
+                                    <td>{{$keluar['nominal']}}</td>
+                                    <td><a href="/edit-pengeluaran/{{$keluar['id']}}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
+                                            <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a></td>
+                                    <td><button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteModal-{{$keluar['id']}}" >
+                                            <i class="fas fa-edit fa-sm text-white-50"></i> Hapus </button></td>
+                                </tr>
+                            @endforeach
+                            
 
                         </tbody>
                     </table>
@@ -148,6 +120,34 @@
          </div>
      </div>
  </div>
+
+@foreach ($pengeluaran as $keluar)
+        <!-- Modal alert delete-->
+<div class="modal fade" id="deleteModal-{{$keluar['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            Apakah anda yakin menghapus data <b> {{$keluar['keterangan']}} </b> dengan nominal <b> Rp.{{$keluar['nominal']}} </b> ?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <form action="hapus-pengeluaran/{{$keluar['id']}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="sumbit" class="btn btn-danger">Hapus</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
 
 </body>
 
