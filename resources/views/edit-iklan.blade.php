@@ -34,9 +34,10 @@
                                 @csrf
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Foto iklan</h6>
-                                    <img src="{{ asset("storage/images/iklan/". $iklan->gambar ) }} " alt="{{$iklan->gambar}}" >
+                                    <img src="{{ asset("storage/images/iklan/". $iklan->gambar ) }} " alt="{{$iklan->gambar}}"  width="300" height="755" >
                                 
                                     <input class="form-control form-control-lg" id="foto" type="file" name='gambar_iklan' value="{{$iklan->gambar}}">
+                                    <p>Ukuran iklan yang direkomendasikan adalah 300px X 755px</p>
                                 </div>
 
                                 <div class="form-group">
@@ -70,9 +71,10 @@
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Letak posisi iklan</h6>
                                     <select class="form-select form-control" aria-label="Default select example" name="letak" id="letak" required>
-                                        <option {{ $iklan['letak'] == 'atas'? 'Selected': ''}} value="atas">Atas</option>
-                                        <option {{ $iklan['letak'] == 'tengah'? 'Selected':'' }} value="tengah">Tengah</option>
-                                        <option {{ $iklan['letak'] == 'bawah'? 'Selected': ''}}value="bawah">Bawah</option>
+                                        <option {{ $iklan['letak'] == 'utama'? 'Selected': ''}} value="utama">Halaman Utama</option>
+                                        <option {{ $iklan['letak'] == 'atas'? 'Selected': ''}} value="atas">Detail berita posisi Atas</option>
+                                        <option {{ $iklan['letak'] == 'tengah'? 'Selected':'' }} value="tengah">Detail berita posisi Tengah</option>
+                                        <option {{ $iklan['letak'] == 'bawah'? 'Selected': ''}}value="bawah">Detail berita posisi Bawah</option>
                                     </select>
                                 </div>
 

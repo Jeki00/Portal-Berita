@@ -158,10 +158,13 @@
                      
                     </ul>
                     <div class="input-group-header mb- head-navbar2">
-                        <input type="text" class="form-control" placeholder="Masukkan Kata Kunci">
-                        <div class="input-group-header-append">
-                          <a href="/pencarian"><button class="btn-header btn-primary-header" type="submit">Cari</button>  </a>
-                         </div>
+                        <form action="/pencarian" method="post" class="row">
+                            @csrf
+                            <input type="text" class="form-control col" placeholder="Cari Kata Kunci" name="cari" width="10000">
+                            <div class="input-group-header-append col">
+                                <a  ><button class="btn-header btn-primary-header" type="submit">Cari</button>  </a>
+                            </div>
+                        </form>
                       </div>
 
                       @auth

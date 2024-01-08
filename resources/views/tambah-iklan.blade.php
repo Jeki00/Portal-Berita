@@ -33,6 +33,7 @@
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Foto iklan</h6>
                                     <input class="form-control form-control-lg" id="gambar-iklan" type="file" name="gambar_iklan"   required>
+                                    <p>Ukuran iklan yang direkomendasikan adalah 300px X 755px</p>
                                 </div>
 
                                 <div class="form-group">
@@ -66,9 +67,10 @@
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Letak posisi iklan</h6>
                                     <select class="form-select form-control" aria-label="Default select example"  name="letak" id="letak" required>
-                                        <option selected value="atas">Atas</option>
-                                        <option value="tengah">Tengah</option>
-                                        <option value="bawah">Bawah</option>
+                                        <option selected value="utama">Halaman Utama</option>
+                                        <option value="atas">Detail berita posisi Atas</option>
+                                        <option value="tengah">Detail berita posisi Tengah</option>
+                                        <option value="bawah">Detail berita posisi Bawah</option>
                                     </select>
                                 </div>
 

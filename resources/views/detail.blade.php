@@ -187,16 +187,45 @@
                                 </div>
                             </div>
                             <!-- New Poster -->
+                            
+                            @foreach ($ads as $ad)
+                                @if ($ad->letak == 'atas')
+                                    @php
+                                        $topAd = $ad;
+                                    @endphp
+                                @elseif ($ad->letak == 'tengah')
+                                    @php
+                                        $midAd = $ad;
+                                    @endphp
+                                @else
+                                    @php
+                                        $botAd = $ad;
+                                    @endphp
+                                @endif
+                            @endforeach
+
                             <div class="news-poster d-none d-lg-block">
-                                <img src="{{asset('template/img/news/news_card.jpg')}}" alt="">
+                                @if(isset($topAd))
+                                    <img src="{{ asset("storage/images/iklan/". $topAd->gambar )  }}" alt="{{$topAd->judul}}" width="300" height="755">
+                                @else
+                                    <img src="{{asset('template/img/news/no_space.png')}}" alt="">
+                                @endif
                             </div>
                             <br>
                             <div class="news-poster d-none d-lg-block">
-                                <img src="{{asset('template/img/news/news_card.jpg')}}" alt="">
+                                @if(isset($midAd))
+                                    <img src="{{ asset("storage/images/iklan/". $midAd->gambar )  }}" alt="{{$midAd->judul}}" width="300" height="755">
+                                @else
+                                    <img src="{{asset('template/img/news/no_space.png')}}" alt="">
+                                @endif
                             </div>
                             <br>
                             <div class="news-poster d-none d-lg-block">
-                                <img src="{{asset('template/img/news/news_card.jpg')}}" alt="">
+                                @if(isset($botAd))
+                                    <img src="{{ asset("storage/images/iklan/". $botAd->gambar )  }}" alt="{{$botAd->judul}}" width="300" height="755">
+                                @else
+                                    <img src="{{asset('template/img/news/no_space.png')}}" alt="">
+                                @endif
                             </div>
                         </div>
                    </div>

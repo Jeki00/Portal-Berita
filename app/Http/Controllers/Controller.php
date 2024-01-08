@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 
 use App\Models;
 use App\Models\UangMasuk;
 use App\Models\UangKeluar;
+use App\Models\Iklan;
+use App\Models\Review;
+use App\Models\Draft;
+use App\Models\Berita;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Exports\LaporanExport;
@@ -18,9 +23,10 @@ use PDF;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-    public function pencarian()
+    public function pencarian(Request $req)
     {
-        return view('pencarian');
+        $news = Berita::with('review.draft')->where('isi','like','%'.$req->cari.'%')->get();
+        return view('semua-berita',compact('news'));
     }
     public function detail()
     {
@@ -164,5 +170,15 @@ class Controller extends BaseController
     public function cetakExcel()
 	{
 		return Excel::download(new LaporanExport, 'laporan.xlsx');
+	}
+    public function semua()
+	{
+        $ads = Iklan::where('letak','utama')
+        ->where('tanggal_keluar','<',now())
+        ->where('tanggal_hilang','>', now())->get();
+
+        $berita=Berita::with('review.draft')->get();
+        $news = $berita->paginate(20);
+		return view('semua-berita',compact('ads','news'));
 	}
 }
