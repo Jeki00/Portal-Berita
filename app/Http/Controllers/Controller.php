@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 use App\Models;
@@ -14,7 +15,9 @@ use App\Models\Iklan;
 use App\Models\Review;
 use App\Models\Draft;
 use App\Models\Berita;
+use App\Models\Dompet;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Exports\LaporanExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,9 +32,31 @@ class Controller extends BaseController
         $news = Berita::with('review.draft')->where('isi','like','%'.$req->cari.'%')->get();
         return view('semua-berita',compact('news'));
     }
-    public function detail()
+    public function detail(string $id)
     {
-        return view('detail');
+        $today = Carbon::now()->toDateString();
+        $dompet = Dompet::firstOrNew(['tanggal' => $today,'id_berita'=>$id]);
+        $dompet->view += 1;
+        $dompet->status = 'unwithdraw';
+        $dompet->save();
+
+        $ads = Iklan::where('tanggal_keluar','<',now())
+        ->where('tanggal_hilang','>',now())->get();
+        
+        $berita = DB::table('drafts as d')
+        ->join('reviews as r', 'r.id_draft', '=', 'd.id')
+        ->join('beritas as b', 'b.id_review', '=', 'r.id')
+        ->select('d.thumbnail','d.judul', 'd.isi',)
+        ->where('d.id','=',$id)
+        ->groupBy('b.id')
+        ->get();
+
+        // dd($berita);
+        
+        return view('detail',compact('ads','berita'));
+
+        
+
     }
 
     # User
@@ -178,8 +203,15 @@ class Controller extends BaseController
         ->where('tanggal_keluar','<',now())
         ->where('tanggal_hilang','>', now())->get();
 
-        $berita=Berita::with('review.draft')->get();
-        $news = $berita->paginate(20);
+        $news = DB::table('beritas as b')
+        ->join('reviews as r', 'r.id', '=', 'b.id_review')
+        ->join('drafts as d', 'r.id_draft', '=', 'd.id')
+        ->select('d.judul', 'd.thumbnail','d.id')
+        ->where('r.status', '=', 'diterima')
+        ->get();
+
+        // dd($news);
+        // $news = $berita->paginate(20);
 		return view('semua-berita',compact('ads','news'));
 	}
 }

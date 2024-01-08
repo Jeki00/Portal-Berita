@@ -64,20 +64,31 @@ class DraftController extends Controller
 
         $user = Auth::user();
 
-        // dd($request);
-
-        $fileName = time() . '.' . $request->thumbnail->extension();
-        $request->thumbnail->storeAs('public/images/thumbnail', $fileName);
-        
-        Draft::create([
-            'thumbnail' => $filePath,
-            'judul' => $request->judul,
-            'kata_kunci' => $request->kata_kunci,
-            'isi' => $request->isi,
-            'created_by' => $request->user_id
+        $request->validate([
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'judul' => 'required',
+            'kunci' => 'required',
+            'isi' => 'required',
         ]);
 
-        return view('');
+        $news = new Draft;
+        $news->judul = $request->judul;
+        $news->kata_kunci = $request->kunci;
+        $news->isi = $request->isi;
+        $news->status = "draft";
+        $news->created_by = $user->id;
+
+
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $thumbnailName = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move(public_path('upload'), $thumbnailName);
+            $news->thumbnail = $thumbnailName;
+        }
+
+        $news->save();
+
+        return redirect()->route('draft')->with('success', 'Draft berita berhasil disimpan.');
     }
 
     /**

@@ -48,15 +48,17 @@
                     <tbody>
                         @foreach ($news as $berita)
                             <tr>
-                                <td width='200'><img src="{{asset('template/img/news/'. $berita->thumbnail)}}" alt="" width="200" height="100"></td>
-                                <td>{{ $berita->judul }}</td>
+                                <td width='200'><img src="{{asset('upload/'. $berita->thumbnail)}}" alt="{{$berita->thumbnail}}" width="200" height="100"></td>
+                                <td>
+                                    <a href="/detail/{{$berita->id}}"><p>{{ $berita->judul }}</p></a> 
+                                </td>
                             </tr>
                             
                         @endforeach
                     </tbody>
                 </table>
 
-                {{$news->links()}}
+                {{-- {{$news->links()}} --}}
             </div>
             <div class="col-md-4">
                 <div class="news-poster d-none d-lg-block" style="width: 50%;float: left;">

@@ -29,7 +29,7 @@
                                 @endcanany
 
                                 @can('user')
-                                <a class="dropdown-item" href="/draft/create">
+                                <a class="dropdown-item" href="/buat-postingan">
                                     <i class="fas fa-file fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Buat Postingan
                                 </a>
