@@ -5,7 +5,7 @@
 
 <head>
     
-    <title>buat postingan</title>
+    <title>review draft</title>
     @include ('layouts.navbar-menu')
 
 </head>
@@ -23,36 +23,45 @@
                             <div class="text-center">
                                 <h1 class="h4 subhead text-blue-100 mb-3" >Review Draft</h1>
                             </div>
-                            <form class="user" action='/edit-akun' method='POST'>
+                            <form class="user" action='/review-draft' method='POST' enctype="multipart/form-data">
                                 @csrf
+
+                                <input type="hidden" name="draft_id" value="{{ $draft->id }}">
+
                                     <div class="form-group">
                                         <h6 class="h6 text-blue-100 mb-1">Thumbnail</h6>
-                                        <input class="form-control form-control-lg" id="thumbnail" type="file">
+                                        <img src="{{ route('thumbnail.show', ['imageName' => $draft->thumbnail]) }}" alt="Thumbnail">
+                                        <br><br>
+                                        <input class="form-control form-control-lg" id="thumbnail" type="file" accept="image/*" name="thumbnail">
                                     </div>
                                    
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Judul Berita</h6>
-                                    <input type="text" class="form-control form-control-user" id="judul" name="judul" placeholder="Masukkan Judul" required>
+                                    <input type="text" class="form-control form-control-user" id="judul" name="judul" value="{{$draft->judul}}" required>
         
                                 </div>
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Kata Kunci</h6>
-                                    <input type="text" class="form-control form-control-user" id="kunci" name="kunci" placeholder="Masukkan kata kunci" required>
+                                    <input type="text" class="form-control form-control-user" id="kunci" name="kunci" value="{{$draft->kata_kunci}}" required>
         
                                 </div>
                                 <div class="form-group">
                                     <h6 class="h6 text-blue-100 mb-1">Isi Berita</h6>
-                                    <textarea class="form-control form-control-user" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control form-control-user" id="isi" name="isi"  rows="3">{{$draft->isi}}</textarea>
         
                                 </div>
                                 
                                 <div class="">
-                                <button class="btn btn-login btn-user btn-regist2" type='submit'>
-                                    Batal
+                                <button class="btn btn-login btn-user btn-regist2">
+                                   <a class="text-white" href="/draft"> Batal </a>
                                 </button>
 
-                                <button class="btn btn-login btn-user btn-regist3" type='submit'>
+                                <button class="btn btn-login btn-user btn-regist3" type='submit' name="action" value="save">
                                     Simpan
+                                </button>
+
+                                <button class="btn btn-login btn-user btn-regist9" type='submit' name="action" value="submit">
+                                    Submit
                                 </button>
                                 </div>
                             </form>
@@ -65,7 +74,11 @@
     </div>
 
 </body>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script>
+        CKEDITOR.replace('isi');
 
+</script>
 @include ('layouts.footer-menu')
 @include ('layouts.script')
 

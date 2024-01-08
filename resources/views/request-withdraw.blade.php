@@ -30,52 +30,19 @@
                                 <th>Aksi</th>
                         </thead>
                         <tbody class="text-center">
+                            @foreach ($withdraws as $withdraw)
                             <tr>
-                                <td>1</td>
-                                <td>R000001 </td>
-                                <td>6894123455666929</td>
-                                <td><div class="badge-pill badge-success">Disetujui</span></div></td>
-                                <td>
-                                    <a href="/detail-withdraw">
-                                        <span class="text">Detail</span>
-                                    </a>
-                                </td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$withdraw->kode_request}} </td>
+                                <td>{{$withdraw->no_rekening}}</td>
+                                <td> <div class="badge-pill badge-success">{{$withdraw->status}}</div></td>
+                                <td><a href="{{route('detailWithdraw',['id'=> $withdraw->id ])}}">
+                                    <span class="text">Lihat</span>
+                                </a></td>
+                                
+                                
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>R000002 </td>
-                                <td>6894123455661234</td>
-                                <td><div class="badge-pill badge-success">Disetujui</span></div></td>
-                                <td>
-                                    <a href="/detail-withdraw">
-                                        <span class="text">Detail</span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>R000003 </td>
-                                <td>1234123455661234</td>
-                                <td><div class="badge-pill badge-success">Disetujui</span></div></td>
-                                <td>
-                                    <a href="/detail-withdraw">
-                                        <span class="text">Detail</span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>R000004</td>
-                                <td>6894123455661234</td>
-                                <td><div class="badge-pill badge-success">Disetujui</span></div></td>
-                                <td>
-                                    <a href="/detail-withdraw">
-                                        <span class="text">Detail</span>
-                                    </a>
-                                </td>
-                            </tr>
-
-                      
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

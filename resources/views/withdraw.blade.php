@@ -31,47 +31,26 @@
                                 <th>Status</th>
                         </thead>
                         <tbody class="text-center">
+                            @foreach ($withdraws as $withdraw)
                             <tr>
-                                <td>1</td>
-                                <td>R000001 </td>
-                                <td>06-09-2023</td>
-                                <td>200000</td>
-                                <td>6895772788378888</td>
-                                <td>
-                                    <div class="badge-pill badge-secondary">Menunggu</span></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>R000002 </td>
-                                <td>03-06-2023</td>
-                                <td>100000</td>
-                                <td>0928899222222222</td>
-                                <td>
-                                    <div class="badge-pill badge-danger">Ditolak</span></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>R000003 </td>
-                                <td>17-05-2023</td>
-                                <td>250000</td>
-                                <td>6895772788379038</td>
-                                <td>
-                                    <div class="badge-pill badge-success">Disetujui</span></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>R000004 </td>
-                                <td>06-09-2023</td>
-                                <td>290000</td>
-                                <td>6895772788371233</td>
-                                <td>
-                                    <div class="badge-pill badge-success">Disetujui</span></div>
-                                </td>
-                            </tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$withdraw->kode_request}} </td>
+                                <td>{{$withdraw->created_at}}</td>
+                                <td>{{$withdraw->nominal}}</td>
+                                <td>{{$withdraw->no_rekening}}</td>
+                                @if ($withdraw->status == "menunggu")
+                                    <td> <div class="badge-pill badge-secondary">{{$withdraw->status}}</div></td>
+                                @elseif ($withdraw->status == "ditolak")
+                                    <td> <div class="badge-pill badge-danger">{{$withdraw->status}}</div></td>
+                                @elseif ($withdraw->status == "disetujui")
+                                    <td> <div class="badge-pill badge-success">{{$withdraw->status}}</div></td>
+                                @else 
+                                    <td> <div class="badge-pill badge-primary">{{$withdraw->status}}</div></td>
 
+                                @endif
+                                
+                            </tr>
+                            @endforeach
 
                         </tbody>
                     </table>

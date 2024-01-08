@@ -20,6 +20,8 @@ class Withdraw extends Model
         'tanggal_pembayaran',
         'status',
         'nominal',
+        'created_by',
+        'no_rekening'
     ];
 
     public function user(): BelongsTo

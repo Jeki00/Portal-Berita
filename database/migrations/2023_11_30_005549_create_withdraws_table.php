@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('withdraws', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kode_request');
+            $table->string('kode_request');
+            $table->string('no_rekening');
             $table->string('nama_pemilik_kartu');
             $table->string('negara');
-            $table->timestamp('tanggal_pembayaran');
+            $table->timestamp('tanggal_pembayaran')->nullable();
             $table->unsignedBigInteger('nominal');
             $table->string('status');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

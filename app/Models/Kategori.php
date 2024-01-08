@@ -19,4 +19,11 @@ class Kategori extends Model
     {
         return $this->hasMany(Review::class, 'id_kategori');
     }
+
+    public static function customCreate($kategori)
+    {
+        return Kategori::create([
+            'kategori' => $kategori,
+        ]);
+    }
 }

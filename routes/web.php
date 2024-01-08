@@ -39,34 +39,29 @@ Route::resource('berita', BeritaController::class);
 Route::resource('draft', DraftController::class);
 Route::resource('iklan', IklanController::class);
 Route::get('/edit-akun', [App\Http\Controllers\Controller::class, 'editAkun'])->name('editAkun');
-
-//halmaan buat draft
+Route::get('/buat-postingan', [App\Http\Controllers\Controller::class, 'buatPostingan'])->name('buatPostingan');
+Route::post('/buat-postingan', [App\Http\Controllers\DraftController::class, 'create'])->name('buatDraft');
+Route::get('/thumbnails/{imageName}', [App\Http\Controllers\Controller::class, 'showThumbnail'])->name('thumbnail.show');
 Route::get('/draft', [App\Http\Controllers\DraftController::class, 'index'])->name('draft');
-Route::get('/draft/create', [App\Http\Controllers\DraftController::class, 'create'])->name('buatPostingan');
-Route::post('/draft', [App\Http\Controllers\DraftController::class, 'store'])->name('buatPostingan');
-
-
-
-Route::get('/review-draft', [App\Http\Controllers\Controller::class, 'reviewDraft'])->name('reviewDraft');
-Route::get('/postinganku', [App\Http\Controllers\Controller::class, 'postinganku'])->name('postinganku');
+Route::get('/review-draft/{id}', [App\Http\Controllers\DraftController::class, 'show'])->name('reviewDraft');
+Route::post('/review-draft', [App\Http\Controllers\DraftController::class, 'update'])->name('updateDraft');
+Route::get('/postinganku', [App\Http\Controllers\ReviewController::class, 'index'])->name('postinganku');
 Route::get('/pemberitahuan', [App\Http\Controllers\Controller::class, 'pemberitahuan'])->name('pemberitahuan');
-Route::get('/dompet', [App\Http\Controllers\Controller::class, 'dompet'])->name('dompet');
-Route::get('/form-withdraw', [App\Http\Controllers\Controller::class, 'formWithdraw'])->name('formWithdraw');
-Route::get('/withdraw', [App\Http\Controllers\Controller::class, 'withdraw'])->name('withdraw');
+Route::get('/dompet', [App\Http\Controllers\DompetController::class, 'index'])->name('dompet');
+Route::post('/dompet', [App\Http\Controllers\DompetController::class, 'store'])->name('storeSelectedRows');
+Route::post('/form-withdraw', [App\Http\Controllers\DompetController::class, 'formWith'])->name('formWithdraw');
+Route::get('/withdraw', [App\Http\Controllers\WithdrawController::class, 'index'])->name('withdraw');
 
 #admin
-Route::get('/daftar-berita', [App\Http\Controllers\Controller::class, 'daftarBerita'])->name('daftarBerita');
-Route::get('/review-berita', [App\Http\Controllers\Controller::class, 'reviewBerita'])->name('reviewBerita');
-Route::get('/withdraw-request', [App\Http\Controllers\Controller::class, 'withdrawRequest'])->name('withdrawRequest');
-Route::get('/detail-request', [App\Http\Controllers\Controller::class, 'detailRequest'])->name('detailRequest');
-
-// iklan
-Route::get('/iklan', [App\Http\Controllers\IklanController::class, 'index'])->name('iklan');
-Route::get('/tambah-iklan', [App\Http\Controllers\IklanController::class, 'create'])->name('simpanIklan');
-Route::post('/tambah-iklan', [App\Http\Controllers\IklanController::class, 'store']);
-Route::get('/edit-iklan/{id}', [App\Http\Controllers\IklanController::class, 'edit'])->name('editIklan');
-Route::post('/edit-iklan/{id}', [App\Http\Controllers\IklanController::class, 'update']);
-Route::delete('/hapus-iklan/{id}', [App\Http\Controllers\IklanController::class, 'destroy'])->name('hapusIklan');
+Route::get('/daftar-berita', [App\Http\Controllers\ReviewController::class, 'indexAdmin'])->name('daftarBerita');
+Route::get('/review-berita/{id}', [App\Http\Controllers\ReviewController::class, 'reviewAdmin'])->name('reviewBerita');
+Route::post('/review-berita', [App\Http\Controllers\ReviewController::class, 'update'])->name('updateBerita');
+Route::get('/withdraw-request', [App\Http\Controllers\WithdrawController::class, 'indexAdmin'])->name('withdrawRequest');
+Route::get('/detail-request/{id}', [App\Http\Controllers\WithdrawController::class, 'show'])->name('detailRequest');
+Route::post('/detail-request', [App\Http\Controllers\WithdrawController::class, 'update'])->name('postRequest');
+Route::get('/iklan', [App\Http\Controllers\Controller::class, 'iklan'])->name('iklan');
+Route::get('/tambah-iklan', [App\Http\Controllers\Controller::class, 'tambahIklan'])->name('tambahIklan');
+Route::get('/edit-iklan', [App\Http\Controllers\Controller::class, 'editIklan'])->name('editIklan');
 
 #Bendahara
 Route::get('/request-withdraw', [App\Http\Controllers\Controller::class, 'requestWithdraw'])->name('requestWithdraw');

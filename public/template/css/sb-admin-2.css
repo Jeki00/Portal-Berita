@@ -3051,6 +3051,13 @@ fieldset:disabled a.btn {
   width: 30%;
   background-color: #1565C0;
 }
+.btn-regist9 {
+  margin-left: 23rem;
+  margin-top: 6rem;
+  display: block;
+  width: 30%;
+  background-color: #1565C0;
+}
 .btn-regist6 {
   margin-left: 50rem;
   display: block;
@@ -4673,7 +4680,24 @@ input[type="button"].btn-block {
   border-radius: 0.35rem;
   height: 40rem;
 }
+.card-login3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  /* background-color: #fff; */
+  /* background: url("../img/symphony.png"); */
+  background-size: 125px 125px;
+  background-clip: border-box;
+  border: 1px solid #ffffff;
+  border-radius: 0.35rem;
+  height: 60rem;
+}
 
+.form-check-input[readonly] {
+  pointer-events: none;
+}
 
 .card > hr {
   margin-right: 0;
