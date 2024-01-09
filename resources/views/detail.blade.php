@@ -48,11 +48,11 @@
                 
                 <div class="navbar-header">
                     <div>
-                        <p>Author : Alfiansyah Bayu</p>
+                        <p>Author : {{$berita[0]->name}}</p>
                     </div>
                     
                     <div class="head-navbar4">
-                        <p>Kamis, 14 Desember 2023</p>
+                        <p>{{$berita[0]->created_at}}</p>
                     </div>
                     
                 </div>
@@ -88,7 +88,8 @@
                                 <div class="col-lg-8">
                                     <h3 class="mr-20">Komentar :</h3><br>
 
-                                    <form class="form-contact contact_form mb-80" action="" method="post" id="contactForm" novalidate="novalidate">
+                                    <form class="form-contact contact_form mb-80" action="/komentar/{{$berita[0]->id}}" method="post" id="contactForm" novalidate="novalidate">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
@@ -103,6 +104,14 @@
                                 </div>
                             </div>
                             @endauth
+                            @foreach ($komentar as $item)
+                            <div class="card my-2" style="width: 600px;height:100px">
+                                <div class="card-body">
+                                  {{$item->komentar}}
+                                </div>
+                              </div>
+                                
+                            @endforeach
                         </div>
                         <div class="col-lg-4">
                             <!-- Section Tittle -->
@@ -195,6 +204,7 @@
                    </div>
             </div>
         </div>
+        
     <!-- End pagination  -->
     </main>
     

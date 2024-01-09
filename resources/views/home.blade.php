@@ -53,10 +53,10 @@
                         <!-- Trending Top -->
                         <div class="trending-top mb-30">
                             <div class="trend-top-img">
-                                <img src="{{asset('template/img/trending/trending_top.jpg')}}" alt="">
+                                <img src="{{asset('upload/'.$topNews[0]->thumbnail)}}" alt=""  width="500" height="300">
                                 <div class="trend-top-cap">
-                                    <span>Appetizers</span>
-                                    <h2><a href="/detail">Welcome To The Best Model Winner<br> Contest At Look of the year</a></h2>
+                                    <span>{{$topNews[0]->kategori}}</span>
+                                    <h2><a href="/detail/{{$topNews[0]->id}}">{{$topNews[0]->judul}}</a></h2>
                                 </div>
                             </div>
                         </div>
@@ -66,33 +66,33 @@
                                 <div class="col-lg-4">
                                 <div class="single-bottom mb-35">
                                     <div class="trend-bottom-img mb-30">
-                                        <img src="{{asset('template/img/trending/trending_bottom1.jpg')}}" alt="">
+                                        <img src="{{asset('upload/'.$topNews[1]->thumbnail)}}" alt="" width="500" height="300">
                                     </div>
                                     <div class="trend-bottom-cap">
-                                        <span class="color1">Lifestyple</span>
-                                        <h4><a href="/detail">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4>
+                                        <span class="color1">{{$topNews[1]->kategori}}</span>
+                                        <h4><a href="/detail/{{$topNews[1]->id}}">{{$topNews[1]->judul}}</a></h4>
                                     </div>
                                 </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
                                         <div class="trend-bottom-img mb-30">
-                                            <img src="{{asset('template/img/trending/trending_bottom2.jpg')}}" alt="">
+                                            <img src="{{asset('upload/'.$topNews[2]->thumbnail)}}" alt=""  width="500" height="300">
                                         </div>
                                         <div class="trend-bottom-cap">
-                                            <span class="color2">Sports</span>
-                                            <h4><h4><a href="/detail">Get the Illusion of Fuller Lashes by “Mascng.”</a></h4></h4>
+                                            <span class="color1">{{$topNews[2]->kategori}}</span>
+                                            <h4><a href="/detail/{{$topNews[2]->id}}">{{$topNews[2]->judul}}</a></h4>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="single-bottom mb-35">
                                         <div class="trend-bottom-img mb-30">
-                                            <img src="{{asset('template/img/trending/trending_bottom3.jpg')}}" alt="">
+                                            <img src="{{asset('upload/'.$topNews[3]->thumbnail)}}" alt=""  width="500" height="300">
                                         </div>
                                         <div class="trend-bottom-cap">
-                                            <span class="color3">Travels</span>
-                                            <h4><a href="/detail"> Welcome To The Best Model Winner Contest</a></h4>
+                                            <span class="color1">{{$topNews[3]->kategori}}</span>
+                                            <h4><a href="/detail/{{$topNews[3]->id}}">{{$topNews[3]->judul}}</a></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -101,13 +101,28 @@
                     </div>
                     <!-- Riht content -->
                     <div class="col-lg-4">
-                        <div class="trand-right-single d-flex">
+                        <div class="news-poster d-none d-lg-block">
+                            @foreach ($ads as $ad)
+                                @if($ad->letak=='utama')
+                                @php
+                                    $mainAd = $ad
+                                @endphp
+                                @endif
+                                
+                            @endforeach
+                            @if (isset($mainAd))
+                                <img src="{{ asset("storage/images/iklan/". $mainAd->gambar )  }}" alt="{{$mainAd->judul}}" width="300" height="755">
+                            @else
+                                <img src="{{asset('template/img/news/no_space.png')}}" alt="">
+                            @endif
+                        </div>
+                        {{-- <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
                                 <img src="{{asset('template/img/trending/right1.jpg')}}" alt="">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">Concert</span>
-                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail/{{$topNews[4]->id}}">{{$topNews[4]->judul}}</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -116,7 +131,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color3">sea beach</span>
-                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail/{{$topNews[5]->id}}">{{$topNews[5]->judul}}</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -125,7 +140,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color2">Bike Show</span>
-                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail/{{$topNews[6]->id}}">{{$topNews[6]->judul}}</a></h4>
                             </div>
                         </div> 
                         <div class="trand-right-single d-flex">
@@ -134,7 +149,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color4">See beach</span>
-                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail/{{$topNews[7]->id}}">{{$topNews[7]->judul}}</a></h4>
                             </div>
                         </div>
                         <div class="trand-right-single d-flex">
@@ -143,9 +158,9 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">Skeping</span>
-                                <h4><a href="/detail">Welcome To The Best Model Winner Contest</a></h4>
+                                <h4><a href="/detail/{{$topNews[8]->id}}">{{$topNews[8]->judul}}</a></h4>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -167,16 +182,19 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="weekly-news-active dot-style d-flex dot-style">
-                            <div class="weekly-single">
-                                <div class="weekly-img">
-                                    <img src="{{asset('template/img/news/weeklyNews2.jpg')}}" alt="">
-                                </div>
-                                <div class="weekly-caption">
-                                    <span class="color1">Strike</span>
-                                    <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
-                                </div>
-                            </div> 
-                            <div class="weekly-single active">
+                            @foreach ($topWeekNews as $item)
+                                <div class="weekly-single">
+                                    <div class="weekly-img">
+                                        <img src="{{asset('upload/'.$item->thumbnail)}}" alt="" width="500" height="200">
+                                    </div>
+                                    <div class="weekly-caption">
+                                        <span class="color1">{{$item->kategori}}</span>
+                                        <h4><a href="/detail/{{$item->id}}">{{$item->judul}}</a></h4>
+                                    </div>
+                                </div> 
+                                
+                            @endforeach
+                            {{-- <div class="weekly-single ">
                                 <div class="weekly-img">
                                         <img src="{{asset('template/img/news/weeklyNews1.jpg')}}" alt="">
                                 </div>
@@ -202,7 +220,7 @@
                                     <span class="color1">Strike</span>
                                     <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -226,12 +244,12 @@
                             <!--Nav Button  -->                                            
                             <nav>                                                                     
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">All</a>
-                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Lifestyle</a>
+                                    <a class="nav-item nav-link active" href="/semua" >Semua berita</a>
+                                    {{-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Lifestyle</a>
                                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Travel</a>
                                     <a class="nav-item nav-link" id="nav-last-tab" data-toggle="tab" href="#nav-last" role="tab" aria-controls="nav-contact" aria-selected="false">Fashion</a>
                                     <a class="nav-item nav-link" id="nav-Sports" data-toggle="tab" href="#nav-nav-Sport" role="tab" aria-controls="nav-contact" aria-selected="false">Sports</a>
-                                    <a class="nav-item nav-link" id="nav-technology" data-toggle="tab" href="#nav-techno" role="tab" aria-controls="nav-contact" aria-selected="false">Technology</a>
+                                    <a class="nav-item nav-link" id="nav-technology" data-toggle="tab" href="#nav-techno" role="tab" aria-controls="nav-contact" aria-selected="false">Technology</a> --}}
                                 </div>
                             </nav>
                             <!--End Nav Button  -->
@@ -246,7 +264,20 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">           
                                 <div class="whats-news-caption">
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6">
+                                        @foreach ($recentNews as $item)
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="single-what-news mb-100">
+                                                    <div class="what-img">
+                                                        <img src="{{asset('upload/'.$item->thumbnail)}}" alt="" width="400" height="200">
+                                                    </div>
+                                                    <div class="what-cap">
+                                                        <span class="color1">{{$item->kategori}}</span>
+                                                        <h4><a href="/detail/{{$item->id}}">{{$item->judul}}</a></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        {{-- <div class="col-lg-6 col-md-6">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
                                                     <img src="{{asset('template/img/news/whatNews1.jpg')}}" alt="">
@@ -289,7 +320,7 @@
                                                     <h4><a href="/detail">Welcome To The Best Model  Winner Contest</a></h4>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -621,14 +652,14 @@
     </section>
     <!-- Whats New End -->
     <!--   Weekly2-News start -->
-    <div class="weekly2-news-area  weekly2-pading gray-bg">
+    {{-- <div class="weekly2-news-area  weekly2-pading gray-bg">
         <div class="container">
             <div class="weekly2-wrapper">
                 <!-- section Tittle -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle mb-30">
-                            <h3>Weekly Top News</h3>
+                            <h3>Weekly Top Newsasda</h3>
                         </div>
                     </div>
                 </div>
@@ -690,11 +721,11 @@
                 </div>
             </div>
         </div>
-    </div>           
+    </div>            --}}
     <!-- End Weekly-News -->
 
     <!--  Recent Articles start -->
-    <div class="recent-articles">
+    {{-- <div class="recent-articles">
         <div class="container">
            <div class="recent-wrapper">
                 <!-- section Tittle -->
@@ -749,10 +780,10 @@
                 </div>
            </div>
         </div>
-    </div>           
+    </div>            --}}
     <!--Recent Articles End -->
     <!--Start pagination -->
-    <div class="pagination-area pb-45 text-center">
+    {{-- <div class="pagination-area pb-45 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -770,7 +801,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End pagination  -->
     </main>
     

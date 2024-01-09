@@ -29,8 +29,20 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     public function pencarian(Request $req)
     {
-        $news = Berita::with('review.draft')->where('isi','like','%'.$req->cari.'%')->get();
-        return view('semua-berita',compact('news'));
+        $news = DB::table('beritas as b')
+        ->join('reviews as r', 'r.id', '=', 'b.id_review')
+        ->join('drafts as d', 'r.id_draft', '=', 'd.id')
+        ->select('d.judul', 'd.thumbnail','d.id')
+        ->where('r.status', '=', 'diterima')
+        ->where('d.isi','like', '%'.$req->cari.'%')
+        ->get();
+        // $news = Berita::with('review.draft')->where('isi','like','%'.$req->cari.'%')->get();
+        $ads = Iklan::where('letak','utama')
+        ->where('tanggal_keluar','<',now())
+        ->where('tanggal_hilang','>', now())->get();
+
+
+        return view('semua-berita',compact('news','ads'));
     }
     public function detail(string $id)
     {
@@ -40,20 +52,27 @@ class Controller extends BaseController
         $dompet->status = 'unwithdraw';
         $dompet->save();
 
+        $komentar = DB::table('komentars as k')
+        ->join('beritas as b','b.id','=','k.id_berita')
+        ->where('b.id','=',$id)
+        ->select('k.komentar')
+        ->get();
+
         $ads = Iklan::where('tanggal_keluar','<',now())
         ->where('tanggal_hilang','>',now())->get();
         
         $berita = DB::table('drafts as d')
         ->join('reviews as r', 'r.id_draft', '=', 'd.id')
         ->join('beritas as b', 'b.id_review', '=', 'r.id')
-        ->select('d.thumbnail','d.judul', 'd.isi',)
+        ->join('users as u', 'u.id','=','d.created_by')
+        ->select('d.thumbnail','d.judul', 'd.isi','d.id', 'u.name', 'd.created_at')
         ->where('d.id','=',$id)
         ->groupBy('b.id')
         ->get();
 
         // dd($berita);
         
-        return view('detail',compact('ads','berita'));
+        return view('detail',compact('ads','berita','komentar'));
 
         
 
@@ -208,10 +227,65 @@ class Controller extends BaseController
         ->join('drafts as d', 'r.id_draft', '=', 'd.id')
         ->select('d.judul', 'd.thumbnail','d.id')
         ->where('r.status', '=', 'diterima')
+        ->orderBy('d.created_at','desc')
         ->get();
 
         // dd($news);
         // $news = $berita->paginate(20);
 		return view('semua-berita',compact('ads','news'));
 	}
+
+    public function beranda()
+	{
+        $ads = Iklan::where('letak','utama')
+        ->where('tanggal_keluar','<',now())
+        ->where('tanggal_hilang','>', now())->get();
+
+        $monthAgo = Carbon::now()->subMonth();
+
+        $topNews =  DB::table('drafts as d')
+        ->join('reviews as r', 'r.id_draft', '=', 'd.id')
+        ->join('beritas as b', 'b.id_review', '=', 'r.id')
+        ->join('dompets as do', 'do.id_berita', '=', 'b.id')
+        ->join('kategoris as k', 'k.id', '=', 'r.id_category')
+        ->select('d.id', 'd.thumbnail', 'd.judul', DB::raw('SUM(do.view) as total_views'), 'k.kategori')
+        ->where('r.created_at', '>=', $monthAgo)
+        ->where('r.status','=','diterima')
+        ->groupBy('d.id','k.kategori')
+        ->orderBy('total_views','desc')
+        ->limit(9)
+        ->get();
+
+        $weekAgo = Carbon::now()->subWeek();
+
+        $topWeekNews =  DB::table('drafts as d')
+        ->join('reviews as r', 'r.id_draft', '=', 'd.id')
+        ->join('beritas as b', 'b.id_review', '=', 'r.id')
+        ->join('dompets as do', 'do.id_berita', '=', 'b.id')
+        ->join('kategoris as k', 'k.id', '=', 'r.id_category')
+        ->select('d.id', 'd.thumbnail', 'd.judul', DB::raw('SUM(do.view) as total_views'), 'k.kategori')
+        ->where('r.created_at', '>=', $weekAgo)
+        ->groupBy('d.id','k.kategori')
+        ->orderBy('total_views','desc')
+        ->limit(4)
+        ->get();
+
+        $recentNews = DB::table('beritas as b')
+        ->join('reviews as r', 'r.id', '=', 'b.id_review')
+        ->join('drafts as d', 'r.id_draft', '=', 'd.id')
+        ->join('kategoris as k', 'k.id', '=', 'r.id_category')
+        ->select('d.judul', 'd.thumbnail','d.id', 'k.kategori')
+        ->groupBy('d.id','k.kategori')
+        ->orderBy('d.created_at','desc')
+        ->limit(4)
+        ->get();
+
+
+
+        // dd($topNews);
+        // dd($topWeekNews);
+		return view('home',compact('ads','topNews','topWeekNews','recentNews'));
+	}
+
+
 }
