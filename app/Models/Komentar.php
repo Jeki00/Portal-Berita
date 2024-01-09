@@ -16,6 +16,7 @@ class Komentar extends Model
     protected $fillable = [
         'id_berita',
         'komentar',
+        'created_by'
     ];
 
     public function user(): BelongsTo

@@ -58,7 +58,7 @@
                     </tbody>
                 </table>
 
-                {{-- {{$news->links()}} --}}
+                {{-- {{ $news->links() }} --}}
             </div>
             <div class="col-md-4">
                 <div class="news-poster d-none d-lg-block" style="width: 50%;float: left;">

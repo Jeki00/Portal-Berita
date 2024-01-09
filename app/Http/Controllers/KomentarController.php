@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models;
 use App\Models\Komentar;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -32,13 +33,15 @@ class KomentarController extends Controller
     {
         $user = Auth::user();
 
+        // dd($user->id);
+
         Komentar::create([
             'id_berita'=>$berita_id,
-            'komentar'=>$request->komentar,
-            'created_by'=>$user->id
+            'created_by'=>$user->id,
+            'komentar'=>$request->message,
         ]);
-
-        return redirect('/detail');
+        return redirect()->route('semua');
+        // return redirect("/detail/". $berita_id);
     }
 
     /**

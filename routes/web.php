@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\Controller::class, 'beranda'])->name('home');
 Route::post('/pencarian', [App\Http\Controllers\Controller::class, 'pencarian'])->name('pencarian');
 Route::get('/detail/{id}', [App\Http\Controllers\Controller::class, 'detail'])->name('detail');
 Route::get('/semua', [App\Http\Controllers\Controller::class, 'semua'])->name('detail');
@@ -106,7 +106,7 @@ Route::get('/laporan/excel', [App\Http\Controllers\Controller::class, 'cetakExce
 
 
 // komentar
-Route::get('/{berita_id}/komentar', [App\Http\Controllers\KomentarController::class, 'create'])->name('komentar');
+Route::post('/komentar/{berita_id}/', [App\Http\Controllers\KomentarController::class, 'store'])->name('komentar');
 Route::get('/daftar-berita', [App\Http\Controllers\ReviewController::class, 'indexAdmin'])->name('daftarBerita');
 Route::get('/review-berita/{id}', [App\Http\Controllers\ReviewController::class, 'reviewAdmin'])->name('reviewBerita');
 Route::post('/review-berita', [App\Http\Controllers\ReviewController::class, 'update'])->name('updateBerita');
@@ -118,13 +118,13 @@ Route::post('/detail-request', [App\Http\Controllers\WithdrawController::class, 
 Route::get('/request-withdraw', [App\Http\Controllers\WithdrawController::class, 'indexBendahara'])->name('requestWithdraw');
 Route::get('/detail-withdraw/{id}', [App\Http\Controllers\WithdrawController::class, 'showBendahara'])->name('detailWithdraw');
 Route::post('/detail-withdraw', [App\Http\Controllers\WithdrawController::class, 'updateBendahara'])->name('prosesWithdraw');
-Route::get('/uang-masuk', [App\Http\Controllers\Controller::class, 'uangMasuk'])->name('uangMasuk');
-Route::get('/tambah-pemasukan', [App\Http\Controllers\Controller::class, 'tambahPemasukan'])->name('tambahPemasukan');
-Route::get('/edit-pemasukan', [App\Http\Controllers\Controller::class, 'editPemasukan'])->name('editPemasukan');
-Route::get('/uang-keluar', [App\Http\Controllers\Controller::class, 'uangKeluar'])->name('uangKeluar');
-Route::get('/tambah-pengeluaran', [App\Http\Controllers\Controller::class, 'tambahPengeluaran'])->name('tambahPengeluaran');
-Route::get('/edit-pengeluaran', [App\Http\Controllers\Controller::class, 'editPengeluaran'])->name('editPengeluaran');
-Route::get('/laporan', [App\Http\Controllers\Controller::class, 'laporan'])->name('laporan');
+// Route::get('/uang-masuk', [App\Http\Controllers\Controller::class, 'uangMasuk'])->name('uangMasuk');
+// Route::get('/tambah-pemasukan', [App\Http\Controllers\Controller::class, 'tambahPemasukan'])->name('tambahPemasukan');
+// Route::get('/edit-pemasukan', [App\Http\Controllers\Controller::class, 'editPemasukan'])->name('editPemasukan');
+// Route::get('/uang-keluar', [App\Http\Controllers\Controller::class, 'uangKeluar'])->name('uangKeluar');
+// Route::get('/tambah-pengeluaran', [App\Http\Controllers\Controller::class, 'tambahPengeluaran'])->name('tambahPengeluaran');
+// Route::get('/edit-pengeluaran', [App\Http\Controllers\Controller::class, 'editPengeluaran'])->name('editPengeluaran');
+// Route::get('/laporan', [App\Http\Controllers\Controller::class, 'laporan'])->name('laporan');
 
 
 // routes/web.php
