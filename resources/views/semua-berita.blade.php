@@ -51,6 +51,8 @@
                                 <td width='200'><img src="{{asset('upload/'. $berita->thumbnail)}}" alt="{{$berita->thumbnail}}" width="200" height="100"></td>
                                 <td>
                                     <a href="/detail/{{$berita->id}}"><p>{{ $berita->judul }}</p></a> 
+                                    
+                                    <span class="color3">{{$berita->kategori}}</span>
                                 </td>
                             </tr>
                             

@@ -18,9 +18,21 @@ class PengeluaranController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pengeluaran = UangKeluar::all();
+        $pengeluaran = UangKeluar::query();
+
+        $tgl_awal= $request->query('tanggal_mulai');
+        $tgl_akhir= $request->query('tanggal_berakhir');
+        
+        if($request->query('tanggal_mulai')){
+            $pengeluaran = $pengeluaran->where('tanggal','>=',$tgl_awal);
+        }
+        if($request->query('tanggal_berakhir')){
+            $pengeluaran = $pengeluaran->where('tanggal','<=',$tgl_akhir);
+        }
+
+        $pengeluaran = $pengeluaran->get();
 
         return view('uang-keluar', compact('pengeluaran'));
     }

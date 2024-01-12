@@ -54,8 +54,9 @@ class Controller extends BaseController
 
         $komentar = DB::table('komentars as k')
         ->join('beritas as b','b.id','=','k.id_berita')
+        ->join('users as u','u.id','=','k.created_by')
         ->where('b.id','=',$id)
-        ->select('k.komentar')
+        ->select('k.komentar', 'u.name')
         ->get();
 
         $ads = Iklan::where('tanggal_keluar','<',now())
@@ -216,7 +217,7 @@ class Controller extends BaseController
 	{
 		return Excel::download(new LaporanExport, 'laporan.xlsx');
 	}
-    public function semua()
+    public function semua(Request $req)
 	{
         $ads = Iklan::where('letak','utama')
         ->where('tanggal_keluar','<',now())
@@ -225,11 +226,16 @@ class Controller extends BaseController
         $news = DB::table('beritas as b')
         ->join('reviews as r', 'r.id', '=', 'b.id_review')
         ->join('drafts as d', 'r.id_draft', '=', 'd.id')
-        ->select('d.judul', 'd.thumbnail','d.id')
-        ->where('r.status', '=', 'diterima')
-        ->orderBy('d.created_at','desc')
-        ->get();
+        ->join('kategoris as k', 'k.id', '=', 'r.id_category')
+        ->select('d.judul', 'd.thumbnail','d.id', 'k.kategori');
+        
 
+        if ($req->query('cat')){
+            $news = $news->where('k.kategori','like', $req->query('cat').'%' );
+        }
+
+        $news = $news->where('r.status', '=', 'diterima')->orderBy('d.created_at','desc')->get();
+        
         // dd($news);
         // $news = $berita->paginate(20);
 		return view('semua-berita',compact('ads','news'));
@@ -251,9 +257,9 @@ class Controller extends BaseController
         ->select('d.id', 'd.thumbnail', 'd.judul', DB::raw('SUM(do.view) as total_views'), 'k.kategori')
         ->where('r.created_at', '>=', $monthAgo)
         ->where('r.status','=','diterima')
-        ->groupBy('d.id','k.kategori')
+        ->groupBy('d.id','k.kategori','d.thumbnail')
         ->orderBy('total_views','desc')
-        ->limit(9)
+        ->limit(4)
         ->get();
 
         $weekAgo = Carbon::now()->subWeek();

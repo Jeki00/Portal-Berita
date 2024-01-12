@@ -4,7 +4,7 @@
             
                     <!-- Topbar Navbar -->
                     <div class="head-navbar">
-                        <h2 class="text-white">UNS News</h2>
+                        <h2 class="text-white"><a href="/home">UNS News</a></h2>
                     </div>
 
                     @guest
@@ -121,37 +121,37 @@
                         </li>
 
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
+                            <a class="text-white " href="/semua?cat=politik">                       
                                 Politik 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
+                            <a class="text-white " href="/semua?cat=dunia">                       
                                 Dunia 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
+                            <a class="text-white " href="/semua?cat=ekonomi">                       
                                 Ekonomi 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
+                            <a class="text-white " href="/semua?cat=sains">                       
                                 Sains & Teknologi 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
+                            <a class="text-white " href="/semua?cat=bisnis">                       
                                 Bisnis 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
+                            <a class="text-white " href="/semua?cat=travel">                       
                                 Travel 
                             </a>
                         </div>
                         <div class="head-navbar2">
-                            <a class="text-white " href="/home">                       
+                            <a class="text-white " href="/semua?cat=iklim">                       
                                 Iklim 
                             </a>
                         </div>

@@ -104,10 +104,12 @@
                                 </div>
                             </div>
                             @endauth
+                            <hr>
                             @foreach ($komentar as $item)
                             <div class="card my-2" style="width: 600px;height:100px">
                                 <div class="card-body">
                                   {{$item->komentar}}
+                                  <p>oleh:{{$item->name}}</p>
                                 </div>
                               </div>
                                 

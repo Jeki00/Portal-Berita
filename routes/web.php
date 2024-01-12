@@ -30,7 +30,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\Controller::class, 'beranda'])->name('home');
 Route::post('/pencarian', [App\Http\Controllers\Controller::class, 'pencarian'])->name('pencarian');
 Route::get('/detail/{id}', [App\Http\Controllers\Controller::class, 'detail'])->name('detail');
-Route::get('/semua', [App\Http\Controllers\Controller::class, 'semua'])->name('detail');
+Route::get('/semua', [App\Http\Controllers\Controller::class, 'semua'])->name('semua');
 
 # User
 Route::get('/profil', [App\Http\Controllers\Controller::class, 'profil'])->name('profil');

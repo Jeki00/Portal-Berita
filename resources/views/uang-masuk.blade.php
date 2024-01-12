@@ -88,7 +88,7 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form class="user" method="POST" action="/pengadaan-barang/periode">
+                 <form class="user" method="get" action="/pengadaan-barang/periode">
                   @csrf
                      <div class="form-group row justify-content-between mb-lg-4">
                          <div class="col-sm-4">
@@ -112,7 +112,7 @@
                      </div>
 
                      <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Simpan</button>
+                      <button type="button" onclick="submitPeriode()" class="btn btn-primary">Simpan</button>
                      </div>
                  </form>
              </div>
@@ -151,6 +151,21 @@
 @endforeach
 
 </body>
+
+<script>
+    function submitPeriode() {
+        // Ambil nilai formulir
+        var tanggalMulai = document.getElementById('tgl_awal').value;
+        var tanggalBerakhir = document.getElementById('tgl_akhir').value;
+
+        // Bangun URL dengan query parameters
+        var url = '/uang-keluar?tanggal_mulai=' + encodeURIComponent(tanggalMulai) +
+                  '&tanggal_berakhir=' + encodeURIComponent(tanggalBerakhir);
+
+        // Redirect ke URL yang telah dibangun
+        window.location.href = url;
+    }
+</script>
 
 @include ('layouts.footer-menu')
 @include ('layouts.script')

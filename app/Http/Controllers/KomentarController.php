@@ -40,8 +40,8 @@ class KomentarController extends Controller
             'created_by'=>$user->id,
             'komentar'=>$request->message,
         ]);
-        return redirect()->route('semua');
-        // return redirect("/detail/". $berita_id);
+        // return redirect()->route('semua');
+        return redirect("/detail/". $berita_id);
     }
 
     /**

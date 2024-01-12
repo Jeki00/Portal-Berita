@@ -15,11 +15,24 @@ class PemasukanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pemasukan = UangMasuk::all();
+        $pemasukan=UangMasuk::query();
+        $tgl_awal= $request->query('tanggal_mulai');
+        $tgl_akhir= $request->query('tanggal_berakhir');
+        
+        if($request->query('tanggal_mulai')){
+            $pemasukan = $pemasukan->where('tanggal','>=',$tgl_awal);
+        }
+        if($request->query('tanggal_berakhir')){
+            $pemasukan = $pemasukan->where('tanggal','<=',$tgl_akhir);
+        }
+
+        $pemasukan = $pemasukan->get();
+        
 
         // dd($pemasukan);
+
         return view('uang-masuk', compact('pemasukan'));
     }
 
