@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dompet;
+use App\Models\Transaksi;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,8 +40,37 @@ class WithdrawController extends Controller
     }
     public function showBendahara($id)
     {
-        $detail = Withdraw::find($id);
-        return view('detail-withdraw', ['details' => $detail]);
+        $details = Withdraw::find($id);
+        $user = Auth::user();
+        $transaksi = new Transaksi;
+        $transaksi->id_withdraw = $id;
+        $transaksi->save();
+
+
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $transaksi->id,
+                'withdraw_id' => $id,
+                'gross_amount' => $details->nominal,
+            ),
+            'customer_details' => array(
+                'nama' => $details->nama_pemilik_kartu,
+                'email' => $user->email,
+                'no_rek' => $details->no_rekening,
+            ),
+        );
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        return view('detail-withdraw', compact('snapToken', 'details'));
     }
 
     public function update(Request $request)
