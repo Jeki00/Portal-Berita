@@ -159,7 +159,7 @@
         var tanggalBerakhir = document.getElementById('tgl_akhir').value;
 
         // Bangun URL dengan query parameters
-        var url = '/uang-keluar?tanggal_mulai=' + encodeURIComponent(tanggalMulai) +
+        var url = '/uang-masuk?tanggal_mulai=' + encodeURIComponent(tanggalMulai) +
                   '&tanggal_berakhir=' + encodeURIComponent(tanggalBerakhir);
 
         // Redirect ke URL yang telah dibangun

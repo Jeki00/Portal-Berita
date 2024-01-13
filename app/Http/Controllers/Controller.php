@@ -184,16 +184,32 @@ class Controller extends BaseController
     {
         return view('edit-pengeluaran');
     }
-    public function laporan()
+    public function laporan(Request $req)
     {
-        $hasil = $results = DB::table('uang_masuks')
-        ->select('*')
-        ->union(DB::table('uang_keluars')->select('*'))
-        ->orderBy('tanggal')
-        ->get();
+        $uang_masuk = DB::table('uang_masuks')->select('*');
+        $uang_keluar = DB::table('uang_keluars')->select('*');
+        
+        $tgl_awal = $req->query('tanggal_mulai');
+        $tgl_akhir = $req->query('tanggal_berakhir');
 
-        // $hasil = json_decode($hasil);
-        // dd($hasil);  
+        if($tgl_awal){
+            $uang_masuk = $uang_masuk->where('tanggal','>=',$tgl_awal);
+            $uang_keluar = $uang_keluar->where('tanggal','>=',$tgl_awal);
+        }
+        if($tgl_akhir){
+            $uang_masuk = $uang_masuk->where('tanggal','<=',$tgl_akhir);
+            $uang_keluar = $uang_keluar->where('tanggal','<=',$tgl_akhir);
+        }
+
+        // $uang_masuk = $uang_masuk->get();
+        // $uang_keluar = $uang_keluar->get();
+
+        $hasil = $uang_masuk->union($uang_keluar)->get();
+        
+        $hasil = $hasil->sortByDesc('tanggal');
+
+        
+
         $total=0;
         return view('laporan', compact(['hasil','total']));
     }

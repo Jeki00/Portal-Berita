@@ -118,7 +118,7 @@
                      </div>
 
                      <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Simpan</button>
+                      <button type="button" onclick="submitPeriode()" class="btn btn-primary">Simpan</button>
                      </div>
                  </form>
              </div>
@@ -128,6 +128,21 @@
  </div>
 
 </body>
+
+<script>
+    function submitPeriode() {
+        // Ambil nilai formulir
+        var tanggalMulai = document.getElementById('tgl_awal').value;
+        var tanggalBerakhir = document.getElementById('tgl_akhir').value;
+
+        // Bangun URL dengan query parameters
+        var url = '/laporan?tanggal_mulai=' + encodeURIComponent(tanggalMulai) +
+                  '&tanggal_berakhir=' + encodeURIComponent(tanggalBerakhir);
+
+        // Redirect ke URL yang telah dibangun
+        window.location.href = url;
+    }
+</script>
 
 @include ('layouts.footer-menu')
 @include ('layouts.script')
